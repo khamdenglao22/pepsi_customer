@@ -7,3 +7,6 @@ $main-la-font: "noto_sans_laoregular";
   box-sizing: border-box;
   font-family: $main-la-font;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
