@@ -1,0 +1,122 @@
+
+
+.container{
+  text-align: center;
+    display: flex;
+    justify-content: center;
+
+
+    padding: 50px;
+    .form-box{
+
+      background: white;
+      background: white;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 5px;
+      // max-width: 28.573%;
+      .name, .gender, .birthday{
+        width: 100%;
+      }
+
+      .name{
+        p{
+          text-align: left;
+          padding-bottom: 10px;
+        }
+      }
+
+      .gender{
+        text-align: left;
+        margin-top: 10px;
+        .radio-box{
+          display: flex;
+          gap: 30px;
+          .radio{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            p{
+              padding-bottom: 0
+            }
+          }
+        }
+      }
+
+      .birthday{
+        // display: grid;
+        // grid-template-columns: repeat(3, auto);
+        position: relative;
+        gap: 20px;
+        margin-top: 10px;
+        p{
+          text-align: left;
+        }
+        .birthday-each-box{
+          width: 30%;
+          input[type="number"]{
+            width: 100%;
+          }
+        }
+      }
+
+      img{
+        width: 50%;
+      }
+
+      .address{
+        width: 100%;
+        margin-top: 15px;
+        p{
+          text-align: left;
+        }
+        .mat-mdc-form-field{
+          width: 100%;
+        }
+
+        .option-v{
+          text-align: right;
+          span{
+            color: #004C97;
+            cursor: pointer;
+          }
+        }
+
+      }
+
+      .submit{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        margin-top: 62px;
+
+      }
+
+    }
+}
+
+input[type="text"], input[type="number"]{
+
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  /* outline: red; */
+  border: 1px solid #B6D0F6;
+  outline-color: #004C97;
+  background: #F0F2F5;
+}
+
+input[type="text"]{
+  width: 100%;
+}
+
+.mdc-text-field--filled{
+  height: 43px;
+}
+
+.mat-mdc-form-field-infix{
+  padding: 20px;
+}
