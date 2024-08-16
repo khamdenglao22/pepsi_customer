@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { CartComponent } from './cart/cart.component';
 
-
 const routes: Routes = [
   {
     path: 'login',
@@ -28,7 +27,7 @@ const routes: Routes = [
   {
     path: 'package-page',
     component: PackagePageComponent,
-
+  },
 
   {
     path: '',
@@ -43,7 +42,6 @@ const routes: Routes = [
         component: CartComponent,
       },
     ],
-
   },
 ];
 

@@ -17,14 +17,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { PackagePageComponent } from './package-page/package-page.component';
 
 // Material
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './home/home.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -32,7 +30,9 @@ import { CartComponent } from './cart/cart.component';
     OtpLoginComponent,
     FormUserComponent,
     PackagePageComponent,
-  HomeComponent, HomeLayoutComponent, CartComponent
+    HomeComponent,
+    HomeLayoutComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,6 @@ import { CartComponent } from './cart/cart.component';
     MatIconModule,
     MatMenuModule,
     BrowserAnimationsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent],
