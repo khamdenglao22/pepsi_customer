@@ -1,0 +1,69 @@
+<header class="sub-header">
+  <a routerLink="">
+    <mat-icon>
+      arrow_back</mat-icon>
+  </a>
+  <h3 class="la-font">ກະຕ່າສິນຄ້າ</h3>
+</header>
+<main>
+  <ul class="lists">
+    <li class="list cart">
+      <div class="list-header">
+        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
+      </div>
+      <div class="list-body">
+        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
+        <span>12.000</span>
+        <div class="btn cart-btn">
+          <button class="btn-left"><mat-icon>
+              delete</mat-icon></button>
+          <div class="btn-right">
+            <button><mat-icon>
+                remove</mat-icon></button>
+            <span>1</span>
+            <button><mat-icon>
+                add</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="list cart">
+      <div class="list-header">
+        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
+      </div>
+      <div class="list-body">
+        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
+        <span>12.000</span>
+        <div class="btn cart-btn">
+          <button class="btn-left"><mat-icon>
+              delete</mat-icon></button>
+          <div class="btn-right">
+            <button><mat-icon>
+                remove</mat-icon></button>
+            <span>1</span>
+            <button><mat-icon>
+                add</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <button class="btn-upload" *ngIf="!imagePreview"
+    (click)="triggerFileInput()">ຄິກເພື່ອອັບໂຫລດຫຼັັກຖານການຊຳລະເງິນ</button>
+  <input type="file" #fileInput *ngIf="!imagePreview" (change)="onFileSelected($event)" hidden>
+  <div class="view-image" *ngIf="imagePreview">
+    <img [src]="imagePreview">
+    <mat-icon class="btn-delete-image" (click)="deleteShowImage()">
+      delete</mat-icon>
+  </div>
+  <div class="total">
+    <p>ລວມມຸນຄ່າ</p>
+    <span>50.000</span>
+  </div>
+  <div class="total">
+    <p>ຄະແນນທີ່ໄດ້ຮັບ</p>
+    <span>10</span>
+  </div>
+  <button class="btn-submit" *ngIf="imagePreview">ຢືນຢັນການສັ່ງຊື້</button>
+  <button class="btn-submit btn-disabled" *ngIf="!imagePreview" disabled>ຢືນຢັນການສັ່ງຊື້</button>
+</main>

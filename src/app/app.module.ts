@@ -16,7 +16,15 @@ import { FormUserComponent } from './form-user/form-user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PackagePageComponent } from './package-page/package-page.component';
 
+// Material
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { HomeComponent } from './home/home.component';
+import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
+import { CartComponent } from './cart/cart.component';
+
 @NgModule({
+
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -24,6 +32,7 @@ import { PackagePageComponent } from './package-page/package-page.component';
     OtpLoginComponent,
     FormUserComponent,
     PackagePageComponent,
+  HomeComponent, HomeLayoutComponent, CartComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +44,9 @@ import { PackagePageComponent } from './package-page/package-page.component';
     MatFormFieldModule,
     FormsModule,
     MatIconModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
