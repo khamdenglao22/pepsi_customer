@@ -7,18 +7,23 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 
+// Material
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { HomeComponent } from './home/home.component';
+import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
+import { CartComponent } from './cart/cart.component';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    LoginComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, HomeComponent, HomeLayoutComponent, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    MatIconModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

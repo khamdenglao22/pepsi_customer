@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container-login">
+  <header>
+    <div class="header-logo">
+      <button mat-icon-button [matMenuTriggerFor]="langMenu">
+        <!-- <img [src]="activeLanguageFlag" width="31.5" height="21" />
+        <mat-icon>keyboard_arrow_down</mat-icon> -->
+        <div class="ln">
+          <img [src]="activeLanguageFlag">
+        </div>
+        <mat-icon>
+          keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #langMenu="matMenu">
+        <button mat-menu-item class="ln-image" style="align-items: center; display: flex; justify-content: center"
+          (click)="onBtnChangeLanguageClick()">
+          <img [src]="unActiveLanguageFlag" width="60.5" height="21" />
+        </button>
+      </mat-menu>
+
+    </div>
+  </header>
+  <div class="card">
+    <div class="login-box">
+      <div class="login-logo">
+        <img src="../../assets/images/logo.png">
+      </div>
+      <h3 class="la-font">ເຂົ້າສູ່ລະບົບ</h3>
+      <form class="login-from">
+        <div class="from-col">
+          <label>ເບີໂທລະສັບ (8 ໂຕເລກ)</label>
+          <input class="from-input" type="text">
+        </div>
+        <div class="from-col">
+          <button>ສົ່ງລະຫັດ OTP</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
