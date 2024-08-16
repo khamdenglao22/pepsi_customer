@@ -8,13 +8,87 @@ $main-la-font: "noto_sans_laoregular";
   font-family: $main-la-font;
 }
 
-.la-font {
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+h1, h2, h3, h4, h5, h6, p{
   font-family: $main-la-font !important;
+  margin: 0 !important; ;
 }
 
-html,
-body {
-  height: 100%;
+
+
+// Mat-select Custom
+.mat-mdc-form-field-infix{
+  padding: 20px;
+}
+.mdc-text-field--filled{
+  height: 43px !important;
+  --mdc-filled-text-field-active-indicator-height: 0 !important;
+  --mdc-filled-text-field-focus-active-indicator-color: #004C97 !important;
+  border: 1px solid #B6D0F6;
+  border-radius: 5px;
+}
+
+.mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+  top: 21.5px;
+}
+
+.mdc-text-field--filled .mdc-floating-label--float-above{
+  transform: translateY(-70%) scale(0.7) !important;
+  display: none;
+}
+
+.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix{
+  padding-top: 10px !important;
+}
+
+.mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper{
+  transform: translateY(0) !important;
+}
+
+
+
+// OTP Custom
+.otp-input{
+  font-size: 20px !important;
+  outline-color: #004C97;
+  border-color: #B6D0F6 !important;
+  background: #F0F2F5;
+}
+
+
+// ----------------------------------------------------------
+
+.submit{
+        button{
+          font-size: 16px;
+          padding: 8px 10px;
+          border: 1px solid#004C97;
+          background: white;
+          color: #004C97;
+          border-radius: 5px;
+          cursor: pointer;
+          border-radius: 20px;
+          &.btn-confirm{
+            background: #004C97;
+            color: #fff;
+
+            border-bottom: 6px solid #00000045;
+          }
+        }
+
+}
+
+.line{
+  width: 100%;
+  border: 1px solid #B6D0F6;
+  border-bottom: none;
+  margin-top: 30px;
+
+.la-font {
+  font-family: $main-la-font !important;
 }
 
 .container {
@@ -295,4 +369,5 @@ body {
       color: #fff;
     }
   }
+
 }
