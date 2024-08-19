@@ -73,7 +73,11 @@ p {
 // ----------------------------------------------------------
 
 .submit {
-  button {
+  a {
+    text-decoration: none;
+  }
+  button,
+  a {
     font-size: 16px;
     padding: 8px 10px;
     border: 1px solid#004C97;
@@ -96,10 +100,10 @@ p {
   border: 1px solid #b6d0f6;
   border-bottom: none;
   margin-top: 30px;
+}
 
-  .la-font {
-    font-family: $main-la-font !important;
-  }
+.la-font {
+  font-family: $main-la-font !important;
 }
 
 .container {
@@ -170,7 +174,7 @@ p {
 
     main {
       padding: 20px;
-      overflow-y: scroll;
+      overflow-y: auto;
       width: 100%;
       height: calc(100vh - 120px);
       .lists {
@@ -322,8 +326,16 @@ p {
       }
       .btn-submit.btn-disabled {
         background-color: #8baccb;
-        cursor: alias;
       }
+    }
+
+    main.reward-page {
+      padding: 0;
+      background: linear-gradient(
+        152deg,
+        rgb(31, 98, 173) 0%,
+        rgb(205, 4, 57) 149%
+      );
     }
   }
 

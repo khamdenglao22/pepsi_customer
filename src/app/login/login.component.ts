@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +13,16 @@ export class LoginComponent {
   activeLanguageFlag = '';
   activeLanguageCode = '';
   unActiveLanguageFlag = '';
+
+  constructor(
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
+
+  loginForm = new FormGroup({
+    phone: new FormControl('', Validators.required),
+  });
 
   ngOnInit(): void {
     const lang = localStorage.getItem('lang');
@@ -32,5 +46,35 @@ export class LoginComponent {
 
     localStorage.setItem('lang', lang);
     window.location.reload();
+  }
+
+  get phone() {
+    return this.loginForm.get('phone');
+  }
+
+  sendOtp() {
+    if (this.loginForm.invalid) {
+      this.snackBar.open('test', '', {
+        verticalPosition: 'top',
+        duration: 2000,
+      });
+      return;
+    }
+
+    this.authService.sendOtp(this.phone?.value).subscribe(
+      (response: any) => {
+        if (response.status == 200) {
+          this.router.navigate(['/login/otp', this.phone?.value]);
+        }
+        console.log(response);
+      },
+      (error) => {
+        let msg = error?.msg || 'ເກີດຂໍ້ຜິດພາດບາງຢ່າງ';
+        this.snackBar.open(msg, '', {
+          verticalPosition: 'top',
+          duration: 2000,
+        });
+      }
+    );
   }
 }

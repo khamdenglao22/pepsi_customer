@@ -1,4 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { CartService } from './cart.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-cart',
@@ -7,8 +11,39 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class CartComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
+  url = environment.imgUrl;
+  store_id: any;
+  lang: any;
 
   imagePreview: string | null = null;
+
+  dataCart: any;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private service: CartService
+  ) {}
+
+  ngOnInit(): void {
+    this.lang = localStorage.getItem('lang');
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.store_id = String(params.get('store_id'));
+      this.loadData();
+    });
+  }
+
+  loadData() {
+    this.service.findCarts(this.lang, this.store_id).subscribe((res: any) => {
+      this.dataCart = res;
+      // console.log(res);
+    });
+  }
+
+  formatCurrency(data: number) {
+    return Number(data).toLocaleString();
+  }
 
   triggerFileInput(): void {
     this.fileInput.nativeElement.click();
@@ -29,5 +64,39 @@ export class CartComponent {
 
   deleteShowImage() {
     this.imagePreview = '';
+  }
+
+  updateCart(updateData: any, qty: any) {
+    const data = {
+      product_id: updateData.product.id,
+      qty: updateData.qty + qty,
+    };
+    // console.log(data);
+    this.service.updateCarts(data).subscribe(
+      (res: any) => {
+        this.loadData();
+      },
+      (error: any) => {
+        this.snackBar.open(error.msg, '', {
+          verticalPosition: 'top',
+          duration: 2000,
+        });
+      }
+    );
+  }
+
+  deleteItem(id: number | null) {
+    // console.log(id);
+    this.service.delateCarts(id).subscribe((res: any) => {
+      this.loadData();
+      this.snackBar.open('ສຳເລັດ', '', {
+        verticalPosition: 'top',
+        duration: 2000,
+      });
+    });
+  }
+
+  onSubmit() {
+    this.router.navigate(['/reward']);
   }
 }
