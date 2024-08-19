@@ -1,0 +1,44 @@
+.container-profile{
+  display: flex;
+  justify-content: center;
+  .profile-box{
+  }
+}
+
+.name{
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  .btn-name{
+    color: #fff;
+    background-color: #004c97;
+    border-radius: 50%;
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+}
+
+.submit{
+  margin-top: 20px;
+  button{
+    width: 100%;
+    padding: 8px 65px;
+    &.btn-confirm.with_img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      img{
+        width: 23px;
+      }
+    }
+}
+
+}
+
+@media only screen and (max-width: 600px){
+  .profile-box{
+    width: 100%;
+  }
+}

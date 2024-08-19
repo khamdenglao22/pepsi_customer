@@ -1,22 +1,23 @@
 <div class="container">
-  
   <div class="content">
     <router-outlet></router-outlet>
   </div>
   <footer>
-    <a class="footer-item" routerLink="/">
-      <mat-icon>
-        fastfood</mat-icon>
+    <a
+      class="footer-item"
+      routerLink="/"
+      routerLinkActive="true"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon> fastfood</mat-icon>
       <span>ເຊັດເມນູອາຫານ</span>
     </a>
-    <a class="footer-item" href="#">
-      <mat-icon>
-        redeem</mat-icon>
+    <a class="footer-item" routerLink="/package-page" routerLinkActive="true">
+      <mat-icon> redeem</mat-icon>
       <span>ແລກຂອງລາງວັນ</span>
     </a>
-    <a class="footer-item" href="#">
-      <mat-icon>
-        person</mat-icon>
+    <a class="footer-item" routerLink="/profile-user" routerLinkActive="true">
+      <mat-icon> person</mat-icon>
       <span>ໂປຣຟາຍ</span>
     </a>
   </footer>
