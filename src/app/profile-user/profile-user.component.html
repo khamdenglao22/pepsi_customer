@@ -1,0 +1,38 @@
+<header class="sub-header">
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      color: white;
+      gap: 5px;
+      font-weight: bold;
+      font-size: 20px;
+    "
+  >
+    ໂປຣຟາຍ
+  </div>
+</header>
+<main>
+  <div class="container-profile">
+    <div class="profile-box">
+      <div class="name">
+        <div class="btn-name">{{ this.name[0] }}</div>
+      </div>
+      <div class="name">{{ this.name }}</div>
+      <div class="btn-profile"></div>
+
+      <div class="submit">
+        <button class="btn-confirm with_img">
+          <img src="../../assets/images/ph_coin-fill.svg" alt="" />
+          <p>10</p>
+        </button>
+      </div>
+      <div class="submit" routerLink="/profile-user/point-history">
+        <button class="btn-confirm">ປະຫວັດການໄດ້ຄະແນນ</button>
+      </div>
+      <div class="submit" routerLink="/profile-user/award-history">
+        <button class="btn-confirm">ປະຫວັດການໄດ້ຂອງລາງວັນ</button>
+      </div>
+    </div>
+  </div>
+</main>

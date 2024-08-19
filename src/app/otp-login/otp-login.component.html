@@ -7,7 +7,10 @@
       <p>ກະລຸໃສ່ລະຫັດຢືນຢົນທີ່ສົງໄປທີ່ເບີ 77269955</p>
     </div>
 
-    <ng-otp-input [config]="{ length: 4 }"></ng-otp-input>
+    <ng-otp-input
+      [config]="{ length: 4 }"
+      (onInputChange)="onOtpChange($event)"
+    ></ng-otp-input>
 
     <div class="submit">
       <button class="btn-confirm">ຢືນຢັນ</button>

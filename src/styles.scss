@@ -27,6 +27,11 @@ p {
   margin: 0 !important;
 }
 
+// Active-tabs
+.footer-item.true{
+  background: black;
+}
+
 // Mat-select Custom
 .mat-mdc-form-field-infix {
   padding: 20px;
@@ -376,3 +381,14 @@ p {
     }
   }
 }
+
+// Mat Pop up
+.mat-mdc-dialog-container .mdc-dialog__surface{
+  background-color: unset !important;
+  overflow: visible;
+}
+
+.cdk-overlay-pane{
+  width: auto !important;
+}
+

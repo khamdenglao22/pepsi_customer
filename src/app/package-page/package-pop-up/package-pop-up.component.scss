@@ -1,3 +1,4 @@
+
 .container-package{
   display: grid;
   grid-template-columns: repeat(4,1fr);
@@ -10,9 +11,8 @@
   padding: 40px 20px;
   border-radius: 20px;
   position: relative;
-  overflow: hidden;
   border-bottom: 6px solid #0000009e;
-  cursor: pointer;
+
 
   &::before{
     content: "";
@@ -26,7 +26,7 @@
   }
   .img-package{
     img{
-      width:100% ;
+      width:50% ;
 
     }
   }
@@ -46,6 +46,36 @@
 
 }
 
+.submit{
+  position: relative;
+  z-index: 1;
+  margin-top: 15px;
+  button{
+    border-bottom: 6px solid #004C97;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 40px;
+  }
+}
+
+.close-popup{
+  width: fit-content;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: unset;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  transform: translateY(-50%);
+  background: #004C97;
+  cursor: pointer;
+  .mat-icon{
+    color: #fff;
+  }
+}
+
 @media only screen and (max-width: 600px){
 .container-package{
   grid-template-columns: repeat(3, 1fr);
@@ -61,4 +91,15 @@
     width: 20px;
   }
 }
+
+.submit button{
+  font-size: 11px;
+  font-weight: bold;
+  padding: 5px 25px;
+  border-radius: 10px;
+
 }
+
+}
+
+
