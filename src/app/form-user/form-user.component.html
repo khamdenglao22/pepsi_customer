@@ -4,18 +4,18 @@
 
     <div class="name">
       <p>ຊື່ ແລະ ນາມສະກຸນ</p>
-      <input type="text" />
+      <input type="text" [(ngModel)]="fullname" />
     </div>
 
     <div class="gender">
       <p>ເພດ</p>
       <div class="radio-box">
         <div class="radio">
-          <input type="radio" />
+          <input type="radio" name="gender" [(ngModel)]="gender" value="m" />
           <p>ຊາຍ</p>
         </div>
         <div class="radio">
-          <input type="radio" />
+          <input type="radio" name="gender" [(ngModel)]="gender" value="f" />
           <p>ຍິງ</p>
         </div>
       </div>
@@ -24,25 +24,19 @@
     <div class="birthday">
       <div class="birthday-each-box">
         <p>ວັນທີເກີດ</p>
-        <input type="number" />
+        <input type="number" [(ngModel)]="dobDay" />
       </div>
-      <div
-        class="birthday-each-box"
-        style="
+      <div class="birthday-each-box" style="
           transform: translateX(116.666666666666666%);
           position: absolute;
           top: 0;
-        "
-      >
+        ">
         <p>ເດືອນ</p>
-        <input type="number" />
+        <input type="number" [(ngModel)]="dobMon" />
       </div>
-      <div
-        class="birthday-each-box"
-        style="position: absolute; top: 0; right: 0"
-      >
+      <div class="birthday-each-box" style="position: absolute; top: 0; right: 0">
         <p>ປີ</p>
-        <input type="number" />
+        <input type="number" [(ngModel)]="dobYear" />
       </div>
     </div>
 
@@ -56,10 +50,10 @@
         <mat-form-field>
           <mat-label>ເລືອກແຂວງ</mat-label>
           <!-- <mat-icon matSuffix>arrow</mat-icon> -->
-          <mat-select name="food">
-            <mat-option *ngFor="let food of foods" [value]="food.value">{{
-              food.viewValue
-            }}</mat-option>
+          <mat-select [(ngModel)]="province_id" (selectionChange)="onProvincesChange()">
+            <mat-option class="la-font" *ngFor="let prov of dataProvinces" [value]="prov.id">{{
+              prov.name
+              }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -68,10 +62,10 @@
         <p>ເມືອງ</p>
         <mat-form-field>
           <mat-label>ເລືອກເມືອງ</mat-label>
-          <mat-select name="food">
-            <mat-option *ngFor="let food of foods" [value]="food.value">{{
-              food.viewValue
-            }}</mat-option>
+          <mat-select [(ngModel)]="district_id" (selectionChange)="onDistrictsChange()">
+            <mat-option *ngFor="let dist of dataDistricts" [value]="dist.id">{{
+              dist.name
+              }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -79,31 +73,27 @@
         <p>ບ້ານ</p>
         <mat-form-field *ngIf="!village">
           <mat-label>ເລືອກບ້ານ</mat-label>
-          <mat-select name="food">
-            <mat-option *ngFor="let food of foods" [value]="food.value">{{
-              food.viewValue
-            }}</mat-option>
+          <mat-select [(ngModel)]="village_id">
+            <mat-option *ngFor="let vill of dataVillages" [value]="vill.id">{{
+              vill.name
+              }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <input
-          type="text"
-          *ngIf="village"
-          style="margin-bottom: 22px; padding: 8px 35px"
-          placeholder="ພິມຊື່ບ້ານ"
-        />
+        <input type="text" [(ngModel)]="village_name" *ngIf="village" style="margin-bottom: 22px; padding: 8px 35px"
+          placeholder="ພິມຊື່ບ້ານ" />
         <p class="option-v" *ngIf="!village">
           ບໍ່ພົບຂໍ້ມູນບ້ານແມ່ນບໍ່?
-          <span (click)="village = !village">ເພີ່ມບ້ານເອງ</span>
+          <span (click)="onAddVillage()">ເພີ່ມບ້ານເອງ</span>
         </p>
         <p class="option-v" *ngIf="village">
           ເລືອກບ້ານທີ່ມີຢູ່ແລ້ວ?
-          <span (click)="village = !village">ເລືອກບ້ານ</span>
+          <span (click)="onAddVillage()">ເລືອກບ້ານ</span>
         </p>
       </div>
     </div>
 
     <div class="submit">
-      <button class="btn-confirm">ບັນທຶກ</button>
+      <button class="btn-confirm" (click)="submit()">ບັນທຶກ</button>
     </div>
   </div>
 </div>

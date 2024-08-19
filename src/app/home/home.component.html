@@ -2,93 +2,29 @@
   <div class="logo">
     <img src="../../assets/images/logo.png">
   </div>
-  <h3 class="la-font">ຮ້ານເຝີຕົ້ນຕານ</h3>
-  <a class="cart" routerLink="cart">
+  <h3 class="la-font" *ngIf="dataStores">{{dataStores.name}}</h3>
+  <a class="cart" *ngIf="dataStores" [routerLink]="['/cart', dataStores.id]">
     <mat-icon>
       shopping_cart</mat-icon>
-    <span>5</span>
+    <span>{{dataCart.length}}</span>
   </a>
 </header>
 <main>
   <h2 class="la-font">ເຊັດເມນູອາຫານ</h2>
-  <ul class="lists">
-    <li class="list">
+  <ul class="lists" style="margin-top: 20px;">
+    <li class="list" *ngFor="let item of dataProducts">
       <div class="list-header">
-        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
+        <img [src]="url+'/static/'+item.image">
       </div>
       <div class="list-body">
-        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
-        <span>12.000</span>
+        <h3 class="la-font">{{item.name}}</h3>
+        <span>{{formatCurrency(item.price)}}</span>
         <div class="btn">
-          <button><mat-icon>
+          <button (click)="addToCart(item.id)"><mat-icon>
               add</mat-icon></button>
         </div>
       </div>
     </li>
-    <li class="list">
-      <div class="list-header">
-        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
-      </div>
-      <div class="list-body">
-        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
-        <span>12.000</span>
-        <div class="btn">
-          <button><mat-icon>
-              add</mat-icon></button>
-        </div>
-      </div>
-    </li>
-    <li class="list">
-      <div class="list-header">
-        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
-      </div>
-      <div class="list-body">
-        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
-        <span>12.000</span>
-        <div class="btn">
-          <button><mat-icon>
-              add</mat-icon></button>
-        </div>
-      </div>
-    </li>
-    <li class="list">
-      <div class="list-header">
-        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
-      </div>
-      <div class="list-body">
-        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
-        <span>12.000</span>
-        <div class="btn">
-          <button><mat-icon>
-              add</mat-icon></button>
-        </div>
-      </div>
-    </li>
-    <li class="list">
-      <div class="list-header">
-        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
-      </div>
-      <div class="list-body">
-        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
-        <span>12.000</span>
-        <div class="btn">
-          <button><mat-icon>
-              add</mat-icon></button>
-        </div>
-      </div>
-    </li>
-    <li class="list">
-      <div class="list-header">
-        <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg">
-      </div>
-      <div class="list-body">
-        <h3 class="la-font">ເຝີນ້ອຍ + ເປບຊິ່</h3>
-        <span>12.000</span>
-        <div class="btn">
-          <button><mat-icon>
-              add</mat-icon></button>
-        </div>
-      </div>
-    </li>
+
   </ul>
 </main>
