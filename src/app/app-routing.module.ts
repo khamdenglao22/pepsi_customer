@@ -9,6 +9,9 @@ import { PackagePageComponent } from './package-page/package-page.component';
 import { HomeComponent } from './home/home.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { CartComponent } from './cart/cart.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { PointHistoryComponent } from './profile-user/point-history/point-history.component';
+import { AwardHistoryComponent } from './profile-user/award-history/award-history.component';
 
 const routes: Routes = [
   {
@@ -24,10 +27,6 @@ const routes: Routes = [
     path: 'form-user',
     component: FormUserComponent,
   },
-  {
-    path: 'package-page',
-    component: PackagePageComponent,
-  },
 
   {
     path: '',
@@ -37,9 +36,26 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
       },
+
       {
         path: 'cart',
         component: CartComponent,
+      },
+      {
+        path: 'package-page',
+        component: PackagePageComponent,
+      },
+      {
+        path: 'profile-user',
+        component: ProfileUserComponent,
+      },
+      {
+        path: 'profile-user/point-history',
+        component: PointHistoryComponent,
+      },
+      {
+        path: 'profile-user/award-history',
+        component: AwardHistoryComponent,
       },
     ],
   },

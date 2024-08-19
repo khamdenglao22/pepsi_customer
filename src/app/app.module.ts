@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgOtpInputModule } from 'ng-otp-input';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,7 +21,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './home/home.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { CartComponent } from './cart/cart.component';
-
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { PackagePopUpComponent } from './package-page/package-pop-up/package-pop-up.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { PointHistoryComponent } from './profile-user/point-history/point-history.component';
+import { AwardHistoryComponent } from './profile-user/award-history/award-history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +45,10 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     HomeLayoutComponent,
     CartComponent,
+    PackagePopUpComponent,
+    ProfileUserComponent,
+    PointHistoryComponent,
+    AwardHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +62,8 @@ import { CartComponent } from './cart/cart.component';
     MatIconModule,
     MatMenuModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
