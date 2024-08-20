@@ -6,6 +6,11 @@
   <h3 class="la-font">ກະຕ່າສິນຄ້າ</h3>
 </header>
 <main *ngIf="dataCart">
+  <dir class="cart-no-product" *ngIf="dataCart.details.length == 0">
+    <mat-icon>
+      production_quantity_limits</mat-icon>
+    <h3>ກະຕ່າບໍ່ມີສິນຄ້າ</h3>
+  </dir>
   <ul class="lists" *ngFor="let item of dataCart.details">
     <li class="list cart">
       <div class="list-header">
@@ -45,6 +50,9 @@
     <p>ຄະແນນທີ່ໄດ້ຮັບ</p>
     <span>{{formatCurrency(dataCart.actual_point)}}</span>
   </div>
-  <button class="btn-submit" *ngIf="imagePreview" (click)="onSubmit()">ຢືນຢັນການສັ່ງຊື້</button>
-  <button class="btn-submit btn-disabled" *ngIf="!imagePreview" disabled>ຢືນຢັນການສັ່ງຊື້</button>
+  <button class="btn-submit" *ngIf="imagePreview && dataCart.details.length > 0"
+    (click)="onSubmit()"><mat-spinner></mat-spinner>ຢືນຢັນການສັ່ງຊື້</button>
+  <button class="btn-submit btn-disabled" *ngIf="!imagePreview || imagePreview && dataCart.details.length == 0"
+    disabled>ຢືນຢັນການສັ່ງຊື້</button>
+
 </main>
