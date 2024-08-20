@@ -1,17 +1,19 @@
 <div class="package-box">
   <div class="img-package">
-    <img alt="" src="../../assets/images/pepsi-shirt.png" />
+    <img alt="" [src]="url + '/static/' + local_data.image" />
   </div>
   <div>
     <div class="btn-coin">
       <img src="../../assets/images/ph_coin-fill.svg" alt="" />
-      <p>10</p>
+      <p>{{ this.local_data.point }}</p>
     </div>
   </div>
 
-  <div class="submit"><button class="">ແລກຂອງລາງວັນ</button></div>
+  <div class="submit" (click)="exchange()">
+    <button class="">ແລກຂອງລາງວັນ</button>
+  </div>
 
-  <div class="close-popup" mat-dialog-actions>
-    <mat-icon mat-button mat-dialog-close>close</mat-icon>
+  <div class="close-popup" mat-dialog-actions mat-dialog-close>
+    <mat-icon mat-button>close</mat-icon>
   </div>
 </div>

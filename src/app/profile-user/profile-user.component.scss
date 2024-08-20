@@ -37,6 +37,14 @@
 
 }
 
+.under-point{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  .date{
+    text-align: right;
+  }
+}
+
 @media only screen and (max-width: 600px){
   .profile-box{
     width: 100%;
