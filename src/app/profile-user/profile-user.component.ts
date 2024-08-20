@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-user.component.scss'],
 })
 export class ProfileUserComponent {
-  name: string = 'ກຸ';
+  name: string = 'Jouy';
 
   ngOnInit(): void {}
 }

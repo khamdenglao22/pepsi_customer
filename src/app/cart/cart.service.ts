@@ -27,4 +27,8 @@ export class CartService {
   delateCarts(product_id: number | null) {
     return this.httpClient.delete(`${this.url}/carts?product_id=${product_id}`);
   }
+
+  createOrder(payment_ref: any) {
+    return this.httpClient.post(`${this.url}/orders`, payment_ref);
+  }
 }

@@ -19,6 +19,8 @@ export class CartComponent {
 
   dataCart: any;
 
+  paymentRef: any;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -52,13 +54,14 @@ export class CartComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const file = input.files[0];
+      this.paymentRef = input.files[0];
 
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string;
       };
-      reader.readAsDataURL(file);
+
+      reader.readAsDataURL(this.paymentRef);
     }
   }
 
@@ -97,6 +100,23 @@ export class CartComponent {
   }
 
   onSubmit() {
-    this.router.navigate(['/reward']);
+    let formatImg = new FormData();
+    formatImg.append('payment_ref', this.paymentRef);
+    this.service.createOrder(formatImg).subscribe(
+      (res: any) => {
+        if (res.status === 200) {
+          this.router.navigate(['/reward']);
+        }
+      },
+
+      (err: any) => {
+        console.log(err);
+
+        this.snackBar.open(err.msg, '', {
+          verticalPosition: 'top',
+          duration: 2000,
+        });
+      }
+    );
   }
 }

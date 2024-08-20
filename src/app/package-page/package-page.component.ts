@@ -9,6 +9,8 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { PackagePopUpComponent } from './package-pop-up/package-pop-up.component';
+import { PackagePageService } from './package-page.service';
+import { environment } from 'src/environments/environment.development';
 
 interface Package {
   value: string;
@@ -27,78 +29,42 @@ export interface DialogData {
   styleUrls: ['./package-page.component.scss'],
 })
 export class PackagePageComponent {
-  packages: Package[] = [
-    {
-      value: '10',
-      viewValue: 'Steak',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Pizza',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Tacos',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Steak',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Pizza',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Tacos',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Steak',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Pizza',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Tacos',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Steak',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Pizza',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-    {
-      value: '10',
-      viewValue: 'Tacos',
-      imgValue: '../../assets/images/pepsi-shirt.png',
-    },
-  ];
-  readonly dialog = inject(MatDialog);
+  constructor(private service: PackagePageService, public dialog: MatDialog) {}
+  url = environment.imgUrl;
+  packages: any;
+  currentPoint: any;
+
+  ngOnInit(): void {
+    this.loadData();
+    this.loadDataPoint();
+  }
+
+  loadData() {
+    this.service.allPrize().subscribe((res: any) => {
+      this.packages = res.data;
+    });
+  }
+
+  loadDataPoint() {
+    this.service.getProfile().subscribe((res: any) => {
+      this.currentPoint = res;
+    });
+  }
 
   openDialog(
     enterAnimationDuration: string,
-    exitAnimationDuration: string
+    exitAnimationDuration: string,
+    data: any
   ): void {
-    this.dialog.open(PackagePopUpComponent, {
+    const dialogRef = this.dialog.open(PackagePopUpComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.loadDataPoint();
     });
   }
 }

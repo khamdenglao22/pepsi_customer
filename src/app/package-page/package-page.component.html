@@ -10,7 +10,7 @@
     "
   >
     <img src="../../assets/images/ph_coin-fill.svg" alt="" />
-    <p>10</p>
+    <p *ngIf="currentPoint">{{ currentPoint.current_point }}</p>
   </div>
 </header>
 <main>
@@ -18,15 +18,15 @@
     <div
       class="package-box"
       *ngFor="let item of packages"
-      (click)="openDialog('0ms', '0ms')"
+      (click)="openDialog('0ms', '0ms', item)"
     >
       <div class="img-package">
-        <img src="{{ item.imgValue }}" alt="" />
+        <img [src]="url + '/static/' + item.image" alt="" />
       </div>
       <div>
         <div class="btn-coin">
           <img src="../../assets/images/ph_coin-fill.svg" alt="" />
-          <p>{{ item.value }}</p>
+          <p>{{ item.point }}</p>
         </div>
       </div>
     </div>
