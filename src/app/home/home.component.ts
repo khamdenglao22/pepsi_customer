@@ -30,6 +30,8 @@ export class HomeComponent {
     this.lang = localStorage.getItem('lang');
     this.service.findStores(this.lang, 1).subscribe((res: any) => {
       this.dataStores = res;
+      // console.log(this.dataStores.id);
+      localStorage.setItem('store_id', this.dataStores.id);
       // console.log(res.id);
       this.store_id = res.id;
       this.findQtyProduct();
