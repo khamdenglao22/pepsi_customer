@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgOtpInputModule } from 'ng-otp-input';
-import { MatDialogModule } from '@angular/material/dialog';import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -28,19 +29,12 @@ import { CartComponent } from './cart/cart.component';
 import { RewardComponent } from './reward/reward.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
 import { PackagePopUpComponent } from './package-page/package-pop-up/package-pop-up.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { PointHistoryComponent } from './profile-user/point-history/point-history.component';
 import { AwardHistoryComponent } from './profile-user/award-history/award-history.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +69,7 @@ import { AwardHistoryComponent } from './profile-user/award-history/award-histor
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {

@@ -18,6 +18,7 @@ export class CartComponent {
   imagePreview: string | null = null;
 
   dataCart: any;
+  submitStatus :boolean = false
 
   paymentRef: any;
 
@@ -39,7 +40,8 @@ export class CartComponent {
   loadData() {
     this.service.findCarts(this.lang, this.store_id).subscribe((res: any) => {
       this.dataCart = res;
-      // console.log(res);
+      console.log(res);
+      console.log(this.dataCart.details.length);
     });
   }
 
@@ -75,6 +77,10 @@ export class CartComponent {
       qty: updateData.qty + qty,
     };
     // console.log(data);
+    if (data.qty == 0) {
+      this.deleteItem(data.product_id);
+      return;
+    }
     this.service.updateCarts(data).subscribe(
       (res: any) => {
         this.loadData();
@@ -92,18 +98,16 @@ export class CartComponent {
     // console.log(id);
     this.service.delateCarts(id).subscribe((res: any) => {
       this.loadData();
-      this.snackBar.open('ສຳເລັດ', '', {
-        verticalPosition: 'top',
-        duration: 2000,
-      });
     });
   }
 
   onSubmit() {
+    this.submitStatus = true;
     let formatImg = new FormData();
     formatImg.append('payment_ref', this.paymentRef);
     this.service.createOrder(formatImg).subscribe(
       (res: any) => {
+        this.submitStatus = false;
         if (res.status === 200) {
           this.router.navigate(['/reward']);
         }
