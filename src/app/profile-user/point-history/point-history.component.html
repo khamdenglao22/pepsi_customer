@@ -19,28 +19,18 @@
 <main>
   <div class="container-profile">
     <div class="container-point">
-      <div class="point-box">
+      <div class="point-box" *ngFor="let item of point">
         <div class="width-box">
           <div class="current-point">
             <img src="../../assets/images/ph_coin-fill.svg" alt="" />
-            <p>10</p>
+            <p>{{ item.point }}</p>
           </div>
         </div>
         <div class="under-point">
-          <p>ໄດ້ຄະແນນຈາກຮ້ານ</p>
-          <div class="date">19-08-2024</div>
-        </div>
-      </div>
-      <div class="point-box">
-        <div class="width-box">
-          <div class="current-point">
-            <img src="../../assets/images/ph_coin-fill.svg" alt="" />
-            <p>10</p>
+          <p>{{ item.description }}</p>
+          <div class="date">
+            {{ item.add_date | date : "dd-MM-yyyy" }}
           </div>
-        </div>
-        <div class="under-point">
-          <p>ໄດ້ຄະແນນຈາກຮ້ານ5555555555555</p>
-          <div class="date">19-08-2024</div>
         </div>
       </div>
     </div>

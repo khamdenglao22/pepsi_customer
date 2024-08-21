@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProfileUserService } from './profile-user.service';
 
 @Component({
   selector: 'app-profile-user',
@@ -6,7 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-user.component.scss'],
 })
 export class ProfileUserComponent {
-  name: string = 'Jouy';
+  profiles: any;
+  constructor(private service: ProfileUserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
+    this.service.getProfile().subscribe((res: any) => {
+      this.profiles = res;
+    });
+  }
 }
