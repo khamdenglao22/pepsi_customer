@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ProfileUserService } from '../profile-user.service';
 
 @Component({
@@ -7,19 +7,71 @@ import { ProfileUserService } from '../profile-user.service';
   styleUrls: ['./point-history.component.scss'],
 })
 export class PointHistoryComponent {
+  // @ViewChild('boxPoint') boxPoint!: ElementRef;
   point: any;
   constructor(private service: ProfileUserService) {}
+  pageNumber: any = 1;
+  totalProd: any;
+  nextPage: Boolean = false;
+  prevPage: Boolean = false;
+  pageSize: any = 10;
+  allPages: any;
+  heightBox: any;
 
   ngOnInit() {
     this.loadData();
   }
 
-  loadData() {
-    this.service.pointHistories().subscribe((res: any) => {
-      console.log(res.data);
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.heightBox = this.boxPoint.nativeElement.clientHeight;
+  //     console.log(this.heightBox);
+  //     this.boxPoint.nativeElement.style.minHeight = `calc()`;
+  //   }, 300);
+  // }
 
-      this.point = res.data;
-    });
+  loadData() {
+    this.service
+      .pointHistories(this.pageNumber, this.pageSize)
+      .subscribe((res: any) => {
+        this.point = res.data;
+        this.totalProd = res.total;
+        this.allPages = Math.ceil(this.totalProd / this.pageSize);
+
+        if (this.pageNumber == this.allPages) {
+          this.nextPage = true;
+        } else {
+          this.nextPage = false;
+        }
+
+        if (this.pageNumber == 1) {
+          this.prevPage = true;
+        } else {
+          this.prevPage = false;
+        }
+      });
+  }
+
+  next(num: number) {
+    this.pageNumber += num;
+
+    // for fox
+
+    if (this.pageNumber == this.allPages) {
+      console.log(this.pageNumber);
+
+      this.nextPage = true;
+    } else {
+      this.nextPage = false;
+    }
+
+    if (this.pageNumber == 1) {
+      this.prevPage = true;
+    } else {
+      this.prevPage = false;
+    }
+
+    this.loadData();
   }
 
   formatCurrency(data: number) {

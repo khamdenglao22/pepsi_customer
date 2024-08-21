@@ -29,5 +29,20 @@
         </div>
       </div>
     </div>
+    <div class="page">
+      <button class="next" (click)="next(-1)" [disabled]="prevPage">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+
+      <div class="next-btn">
+        <p>{{ this.pageNumber }}</p>
+        <p>/</p>
+        <p *ngIf="allPages > 0">{{ this.allPages }}</p>
+      </div>
+
+      <button class="next" (click)="next(1)" [disabled]="nextPage">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
   </div>
 </main>
