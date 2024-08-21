@@ -89,8 +89,10 @@ p {
     &.btn-confirm {
       background: #004c97;
       color: #fff;
-
       border-bottom: 6px solid #00000045;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
@@ -327,11 +329,6 @@ p {
         align-items: center;
         justify-content: center;
         gap: 10px;
-
-        .mat-mdc-progress-spinner
-          .mdc-circular-progress__indeterminate-circle-graphic {
-          stroke: #fff !important;
-        }
       }
       .btn-submit.btn-disabled {
         background-color: #8baccb;
@@ -411,4 +408,13 @@ p {
 
 .cdk-overlay-pane {
   width: auto !important;
+}
+
+.package-btn-submit
+  .mat-mdc-progress-spinner
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #004c97 !important;
+}
+.mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #fff !important;
 }

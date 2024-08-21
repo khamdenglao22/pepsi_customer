@@ -31,7 +31,7 @@
           <input class="from-input" formControlName="phone" type="text">
         </div>
         <div class="from-col">
-          <button>ສົ່ງລະຫັດ OTP</button>
+          <button><mat-spinner *ngIf="submitStatus"></mat-spinner><span *ngIf="!submitStatus">ສົ່ງລະຫັດ OTP</span></button>
         </div>
       </form>
 

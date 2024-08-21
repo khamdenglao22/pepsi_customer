@@ -9,8 +9,9 @@
     </div>
   </div>
 
-  <div class="submit" (click)="exchange()">
-    <button class="">ແລກຂອງລາງວັນ</button>
+  <div class="submit package-btn-submit">
+    <button (click)="exchange()"><mat-spinner *ngIf="submitStatus"></mat-spinner><span
+        *ngIf="!submitStatus">ແລກຂອງລາງວັນ</span></button>
   </div>
 
   <div class="close-popup" mat-dialog-actions mat-dialog-close>

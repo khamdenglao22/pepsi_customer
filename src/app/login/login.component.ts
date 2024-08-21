@@ -13,6 +13,7 @@ export class LoginComponent {
   activeLanguageFlag = '';
   activeLanguageCode = '';
   unActiveLanguageFlag = '';
+  submitStatus: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -53,16 +54,16 @@ export class LoginComponent {
   }
 
   sendOtp() {
+    this.submitStatus = true;
+
     if (this.loginForm.invalid) {
-      this.snackBar.open('test', '', {
-        verticalPosition: 'top',
-        duration: 2000,
-      });
+      this.submitStatus = false;
       return;
     }
 
     this.authService.sendOtp(this.phone?.value).subscribe(
       (response: any) => {
+        this.submitStatus = false;
         if (response.status == 200) {
           this.router.navigate(['/login/otp', this.phone?.value]);
         }

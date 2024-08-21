@@ -18,7 +18,7 @@ export class CartComponent {
   imagePreview: string | null = null;
 
   dataCart: any;
-  submitStatus :boolean = false
+  submitStatus: boolean = false;
 
   paymentRef: any;
 
@@ -30,6 +30,7 @@ export class CartComponent {
   ) {}
 
   ngOnInit(): void {
+    // console.log(this.fileInput);
     this.lang = localStorage.getItem('lang');
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.store_id = String(params.get('store_id'));
