@@ -102,10 +102,12 @@ export class CartComponent {
   }
 
   onSubmit() {
+    this.submitStatus = true;
     let formatImg = new FormData();
     formatImg.append('payment_ref', this.paymentRef);
     this.service.createOrder(formatImg).subscribe(
       (res: any) => {
+        this.submitStatus = false;
         if (res.status === 200) {
           this.router.navigate(['/reward']);
         }

@@ -50,8 +50,8 @@
     <p>ຄະແນນທີ່ໄດ້ຮັບ</p>
     <span>{{formatCurrency(dataCart.actual_point)}}</span>
   </div>
-  <button class="btn-submit" *ngIf="imagePreview && dataCart.details.length > 0"
-    (click)="onSubmit()"><mat-spinner></mat-spinner>ຢືນຢັນການສັ່ງຊື້</button>
+  <button class="btn-submit" *ngIf="imagePreview && dataCart.details.length > 0" (click)="onSubmit()"><mat-spinner
+      *ngIf="submitStatus"></mat-spinner>ຢືນຢັນການສັ່ງຊື້</button>
   <button class="btn-submit btn-disabled" *ngIf="!imagePreview || imagePreview && dataCart.details.length == 0"
     disabled>ຢືນຢັນການສັ່ງຊື້</button>
 
