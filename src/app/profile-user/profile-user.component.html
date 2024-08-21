@@ -16,15 +16,19 @@
   <div class="container-profile">
     <div class="profile-box">
       <div class="name">
-        <div class="btn-name">{{ this.name[0] }}</div>
+        <div *ngIf="profiles" class="btn-name">
+          {{ this.profiles.fullname[0] }}
+        </div>
       </div>
-      <div class="name">{{ this.name }}</div>
+      <div *ngIf="profiles" class="name">
+        {{ this.profiles.fullname }}
+      </div>
       <div class="btn-profile"></div>
 
       <div class="submit">
         <button class="btn-confirm with_img">
           <img src="../../assets/images/ph_coin-fill.svg" alt="" />
-          <p>10</p>
+          <p *ngIf="profiles">{{ this.profiles.current_point }}</p>
         </button>
       </div>
       <div class="submit" routerLink="/profile-user/point-history">

@@ -19,21 +19,12 @@
 <main>
   <div class="container-profile">
     <div class="container-point">
-      <div class="point-box">
+      <div class="point-box" *ngFor="let item of prize">
         <div class="current-point">
-          <img src="../../assets/images/pepsi-shirt.png" alt="" />
+          <img [src]="url + '/static/' + item.image" alt="" />
           <div>
-            <p style="font-weight: bold">ໄດ້ຮັບລາງວັນຈາກ</p>
-            <div class="date">19-08-2024</div>
-          </div>
-        </div>
-      </div>
-      <div class="point-box">
-        <div class="current-point">
-          <img src="../../assets/images/pepsi-shirt.png" alt="" />
-          <div>
-            <p style="font-weight: bold">ໄດ້ຮັບລາງວັນຈາກ55555555555</p>
-            <div class="date">19-08-2024</div>
+            <p style="font-weight: bold">{{ item.description }}</p>
+            <div class="date">{{ item.add_date | date : "dd-MM-yyyy" }}</div>
           </div>
         </div>
       </div>
