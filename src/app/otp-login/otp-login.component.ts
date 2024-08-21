@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class OtpLoginComponent {
   otp: string = '';
   phone: string = '';
+  submitStatus: boolean = false;
 
   constructor(
     private router: Router,
@@ -33,10 +34,12 @@ export class OtpLoginComponent {
   }
 
   onSubmit() {
+    this.submitStatus = true;
     if (this.otp.length == 4) {
       this.authService.login(this.phone, this.otp).subscribe(
         (res: any) => {
           console.log(res);
+          this.submitStatus = false;
           localStorage.setItem('token', res.token);
           if (!res.confirm_profile) {
             this.router.navigate(['form-user']);
@@ -46,6 +49,7 @@ export class OtpLoginComponent {
         },
         (error) => {
           console.log(error);
+          this.submitStatus = false;
           let msg = error?.msg || 'ເກີດຂໍ້ຜິດພາດບາງຢ່າງ';
           this.snackBar.open(msg, '', {
             verticalPosition: 'top',

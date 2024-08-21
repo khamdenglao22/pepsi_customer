@@ -26,6 +26,7 @@ export class PackagePopUpComponent {
   local_data: any;
   url = environment.imgUrl;
   store_id: any;
+  submitStatus: boolean = false;
 
   constructor(
     private service: PackagePageService,
@@ -45,10 +46,11 @@ export class PackagePopUpComponent {
 
   exchange() {
     // let store_id = localStorage.getItem('store_id');
-
+    this.submitStatus = true;
     this.service
       .prizeExchange(this.store_id, this.local_data.id)
       .subscribe((res: any) => {
+        this.submitStatus = false;
         this.dialogRef.close();
       });
   }
