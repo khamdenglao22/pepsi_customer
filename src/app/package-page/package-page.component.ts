@@ -57,7 +57,7 @@ export class PackagePageComponent {
     data: any
   ): void {
     const dialogRef = this.dialog.open(PackagePopUpComponent, {
-      width: '250px',
+      // width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
       data,

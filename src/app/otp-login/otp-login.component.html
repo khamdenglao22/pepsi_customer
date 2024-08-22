@@ -10,8 +10,9 @@
     <ng-otp-input [config]="{ length: 4 } " (onInputChange)="onOtpChange($event)"></ng-otp-input>
 
     <div class="submit">
-      <button class="btn-confirm" (click)="onSubmit()"><mat-spinner
-          *ngIf="submitStatus"></mat-spinner><span *ngIf="!submitStatus">ຢືນຢັນ</span></button>
+      <button class="btn-confirm" (click)="onSubmit()" *ngIf="btnDisabled"><mat-spinner *ngIf="submitStatus"></mat-spinner><span
+          *ngIf="!submitStatus">ຢືນຢັນ</span></button>
+      <button class="btn-confirm btn-confirm-disabled" [disabled]="false" *ngIf="!btnDisabled"><span>ຢືນຢັນ</span></button>
       <a routerLink="/login">ກັບຄືນ</a>
     </div>
   </div>

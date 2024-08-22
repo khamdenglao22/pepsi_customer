@@ -13,6 +13,8 @@
     align-items: center;
     height: fit-content;
     // max-width: 28.573%;
+
+    .form-box-body,
     .name,
     .gender,
     .birthday {
@@ -61,7 +63,7 @@
     }
 
     img {
-      width: 50%;
+      width: 35%;
     }
 
     .address {
@@ -114,4 +116,42 @@ input[type="text"] {
 
 .mat-mdc-form-field-infix {
   padding: 20px;
+}
+
+.mat-mdc-progress-spinner {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    padding: 0 !important;
+    .form-box {
+      padding: 20px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0 !important;
+    .form-box {
+      padding: 20px !important;
+      width: 90% !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    padding: 0 !important;
+    .form-box {
+      padding: 0 !important;
+      width: 100% !important;
+      .form-box-body,
+      .submit {
+        padding: 20px !important;
+      }
+    }
+  }
 }

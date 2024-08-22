@@ -28,10 +28,19 @@
       <form class="login-from" (submit)="sendOtp()" [formGroup]="loginForm">
         <div class="from-col">
           <label>ເບີໂທລະສັບ (8 ໂຕເລກ)</label>
-          <input class="from-input" formControlName="phone" type="text">
+          <input class="from-input" formControlName="phone" [type]="onType" maxlength="8"
+            (input)="onSearchChange($event.target)">
+          <!-- <div class="text-danger"
+            *ngIf="loginForm.controls['phone'].invalid &&( loginForm.controls['phone'].touched || loginForm.controls['phone'].dirty)">
+            <span *ngIf="getPhone?.errors?.['minLength']?.['actualLength'] < 8" style="color: red;">ພີມ 8
+              ໂຕ</span>
+          </div> -->
+          <!-- //requiredLength -->
+          <!-- //actualLength -->
         </div>
         <div class="from-col">
-          <button><mat-spinner *ngIf="submitStatus"></mat-spinner><span *ngIf="!submitStatus">ສົ່ງລະຫັດ OTP</span></button>
+          <button><mat-spinner *ngIf="submitStatus"></mat-spinner><span *ngIf="!submitStatus">ສົ່ງລະຫັດ
+              OTP</span></button>
         </div>
       </form>
 

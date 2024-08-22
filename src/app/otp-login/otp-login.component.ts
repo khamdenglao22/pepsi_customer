@@ -12,6 +12,7 @@ export class OtpLoginComponent {
   otp: string = '';
   phone: string = '';
   submitStatus: boolean = false;
+  btnDisabled: boolean = false;
 
   constructor(
     private router: Router,
@@ -29,8 +30,13 @@ export class OtpLoginComponent {
 
   onOtpChange(otp: any) {
     this.otp = otp;
-    console.log(this.otp);
-    console.log(this.otp.length == 4);
+    // console.log(this.otp);
+    // console.log(this.otp.length == 4);
+    if (this.otp.length == 4) {
+      this.btnDisabled = true;
+    } else {
+      this.btnDisabled = false;
+    }
   }
 
   onSubmit() {
@@ -57,11 +63,6 @@ export class OtpLoginComponent {
           });
         }
       );
-    } else {
-      this.snackBar.open('ປ້ອນ OTP ໃຫ້ຄົບ', '', {
-        verticalPosition: 'top',
-        duration: 2000,
-      });
     }
   }
 }
