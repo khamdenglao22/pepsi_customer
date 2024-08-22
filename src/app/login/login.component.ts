@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +14,15 @@ export class LoginComponent {
   activeLanguageCode = '';
   unActiveLanguageFlag = '';
   submitStatus: boolean = false;
+  store_id: any;
 
   onType: string = 'number';
 
   constructor(
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   loginForm = new FormGroup({
@@ -45,10 +47,14 @@ export class LoginComponent {
       this.unActiveLanguageFlag = 'assets/images/en-icon.svg';
       localStorage.setItem('lang', 'lo');
     }
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+    });
   }
 
   onSearchChange(searchValue: any): void {
-    console.log(searchValue.value);
+    // console.log(searchValue.value);
     this.onType = 'number';
     if (searchValue.value.length == 8) {
       this.onType = 'string';
@@ -94,7 +100,12 @@ export class LoginComponent {
         this.onType = 'number';
         this.submitStatus = false;
         if (response.status == 200) {
-          this.router.navigate(['/login/otp', this.phone?.value]);
+          this.router.navigate(['/login/otp', this.phone?.value], {
+            queryParams: {
+              store_id: this.store_id,
+              otp: response.otp,
+            },
+          });
         }
         console.log(response);
       },

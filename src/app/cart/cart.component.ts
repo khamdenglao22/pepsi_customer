@@ -32,8 +32,8 @@ export class CartComponent {
   ngOnInit(): void {
     // console.log(this.fileInput);
     this.lang = localStorage.getItem('lang');
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.store_id = String(params.get('store_id'));
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
       this.loadData();
     });
   }
@@ -41,8 +41,8 @@ export class CartComponent {
   loadData() {
     this.service.findCarts(this.lang, this.store_id).subscribe((res: any) => {
       this.dataCart = res;
-      console.log(res);
-      console.log(this.dataCart.details.length);
+      // console.log(res);
+      // console.log(this.dataCart.details.length);
     });
   }
 
@@ -110,7 +110,11 @@ export class CartComponent {
       (res: any) => {
         this.submitStatus = false;
         if (res.status === 200) {
-          this.router.navigate(['/reward']);
+          this.router.navigate(['/reward'], {
+            queryParams: {
+              store_id: this.store_id,
+            },
+          });
         }
       },
 

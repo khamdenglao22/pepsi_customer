@@ -3,7 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeService } from './home.service';
 import { environment } from 'src/environments/environment.development';
 import { CartService } from '../cart/cart.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,9 @@ export class HomeComponent {
     private snackBar: MatSnackBar,
     private service: HomeService,
     private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,16 @@ export class HomeComponent {
     });
 
     // console.log(this.store_id_storage);
+
+    const token = this.authService.getToken();
+    if (!token) {
+      this.router.navigate(['/login'], {
+        queryParams: {
+          store_id: this.store_id,
+        },
+      });
+      return;
+    }
 
     this.service.findStores(this.lang, this.store_id).subscribe((res: any) => {
       this.dataStores = res;

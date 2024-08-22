@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormUserService } from './form-user.service';
 
 interface Food {
@@ -38,10 +38,13 @@ export class FormUserComponent {
   village_id: string = '';
   village_name: string = '';
 
+  store_id: any;
+
   constructor(
     private router: Router,
     private snackBar: MatSnackBar,
-    private service: FormUserService
+    private service: FormUserService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +52,10 @@ export class FormUserComponent {
     this.service.findProvinces(this.lang).subscribe((res: any) => {
       this.dataProvinces = res.data;
       // console.log(res.data);
+    });
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
     });
   }
 
@@ -127,7 +134,11 @@ export class FormUserComponent {
       (res: any) => {
         this.submitStatus = false;
         if (res.status == 200) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/'], {
+            queryParams: {
+              store_id: this.store_id,
+            },
+          });
         }
       },
       (error: any) => {

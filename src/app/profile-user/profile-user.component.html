@@ -1,14 +1,12 @@
 <header class="sub-header">
-  <div
-    style="
+  <div style="
       display: flex;
       align-items: center;
       color: white;
       gap: 5px;
       font-weight: bold;
       font-size: 20px;
-    "
-  >
+    ">
     ໂປຣຟາຍ
   </div>
 </header>
@@ -31,10 +29,10 @@
           <p *ngIf="profiles">{{ this.profiles.current_point }}</p>
         </button>
       </div>
-      <div class="submit" routerLink="/profile-user/point-history">
+      <div class="submit" routerLink="/profile-user/point-history" [queryParams]="{store_id: store_id}">
         <button class="btn-confirm">ປະຫວັດການໄດ້ຄະແນນ</button>
       </div>
-      <div class="submit" routerLink="/profile-user/award-history">
+      <div class="submit" routerLink="/profile-user/award-history" [queryParams]="{store_id: store_id}">
         <button class="btn-confirm">ປະຫວັດການໄດ້ຂອງລາງວັນ</button>
       </div>
     </div>

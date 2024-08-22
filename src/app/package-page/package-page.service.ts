@@ -20,8 +20,7 @@ export class PackagePageService {
   prizeExchange(prize_id: any, store_id: any) {
     return this.httpClient.post(
       `${this.url}/prizes/manual/exchange?prize_id=${prize_id}&store_id=${store_id}`,
-      prize_id,
-      store_id
+      null
     );
   }
 }

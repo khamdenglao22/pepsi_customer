@@ -13,6 +13,9 @@ export class OtpLoginComponent {
   phone: string = '';
   submitStatus: boolean = false;
   btnDisabled: boolean = false;
+  store_id: any;
+
+  test_otp: any;
 
   constructor(
     private router: Router,
@@ -25,6 +28,11 @@ export class OtpLoginComponent {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.phone = String(params.get('phone'));
       // console.log(this.phone);
+    });
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+      this.test_otp = params.get('otp');
     });
   }
 
@@ -48,10 +56,18 @@ export class OtpLoginComponent {
           this.submitStatus = false;
           localStorage.setItem('token', res.token);
           if (!res.confirm_profile) {
-            this.router.navigate(['form-user']);
-            return;
+            this.router.navigate(['/form-user'], {
+              queryParams: {
+                store_id: this.store_id,
+              },
+            });
+          } else {
+            this.router.navigate(['/'], {
+              queryParams: {
+                store_id: this.store_id,
+              },
+            });
           }
-          this.router.navigate(['/']);
         },
         (error) => {
           console.log(error);
