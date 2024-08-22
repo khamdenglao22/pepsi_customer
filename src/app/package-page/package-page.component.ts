@@ -13,6 +13,7 @@ import { PackagePageService } from './package-page.service';
 import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Package {
   value: string;
@@ -80,7 +81,7 @@ export class PackagePageComponent {
     data: any
   ): void {
     const dialogRef = this.dialog.open(PackagePopUpComponent, {
-      // width: '250px',
+      width: '90%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {

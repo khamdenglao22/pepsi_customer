@@ -3,32 +3,27 @@
     <mat-icon> arrow_back</mat-icon>
   </a>
 
-  <div
-    style="
+  <div style="
       display: flex;
       align-items: center;
       color: white;
       gap: 5px;
       font-weight: bold;
       font-size: 20px;
-    "
-  >
+    ">
     ປະຫວັດການໄດ້ຄະແນນ
   </div>
 </header>
 <main style="position: relative">
-  <div
-    *ngIf="this.point.length == 0"
-    style="
+  <div *ngIf="this.point.length == 0" style="
       width: 100%;
       height: 100%;
       font-size: 25px;
       display: flex;
       justify-content: center;
       align-items: center;
-    "
-  >
-    <p>ຍັງບໍ່ປະຫວັດການແລກຄະແນນ</p>
+    ">
+    <p>ຍັງບໍ່ມີຂໍ້ມູນ</p>
   </div>
 
   <div class="container-profile">
@@ -36,7 +31,7 @@
       <div class="point-box" *ngFor="let item of point">
         <div class="width-box">
           <div class="current-point">
-            <img src="../../assets/images/ph_coin-fill.svg" alt="" />
+            <img src="./assets/images/ph_coin-fill.svg" alt="" />
             <p>{{ item.point }}</p>
           </div>
         </div>

@@ -25,7 +25,7 @@
 
       <div class="submit">
         <button class="btn-confirm with_img">
-          <img src="../../assets/images/ph_coin-fill.svg" alt="" />
+          <img src="./assets/images/ph_coin-fill.svg" alt="" />
           <p *ngIf="profiles">{{ this.profiles.current_point }}</p>
         </button>
       </div>
@@ -34,6 +34,10 @@
       </div>
       <div class="submit" routerLink="/profile-user/award-history" [queryParams]="{store_id: store_id}">
         <button class="btn-confirm">ປະຫວັດການໄດ້ຂອງລາງວັນ</button>
+      </div>
+
+      <div class="submit">
+        <button class="btn-confirm" (click)="onLogout()">ອອກຈາກລະບົບ</button>
       </div>
     </div>
   </div>

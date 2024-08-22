@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileUserService } from './profile-user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-profile-user',
@@ -12,7 +13,9 @@ export class ProfileUserComponent {
   store_id: any;
   constructor(
     private service: ProfileUserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +28,15 @@ export class ProfileUserComponent {
   loadData() {
     this.service.getProfile().subscribe((res: any) => {
       this.profiles = res;
+    });
+  }
+
+  onLogout() {
+    this.authService.removeToken();
+    this.router.navigate(['/login'], {
+      queryParams: {
+        store_id: this.store_id,
+      },
     });
   }
 }
