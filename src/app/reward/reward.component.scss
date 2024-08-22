@@ -63,3 +63,11 @@ text {
   }
 }
 
+@media only screen and (max-height: 600px){
+  .img-spin{
+    img{
+      width: 50%;
+    }
+  }
+}
+
