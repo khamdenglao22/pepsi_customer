@@ -50,13 +50,24 @@ export class PackagePopUpComponent {
     this.submitStatus = true;
     this.service
       .prizeExchange(this.local_data.id, this.local_data.store_id)
-      .subscribe((res: any) => {
-        this.submitStatus = false;
-        this.snackBar.open('ສຳເລັດ', '', {
-          verticalPosition: 'top',
-          duration: 2000,
-        });
-        this.dialogRef.close();
-      });
+      .subscribe(
+        (res: any) => {
+          this.submitStatus = false;
+          this.snackBar.open('ສຳເລັດ', '', {
+            verticalPosition: 'top',
+            duration: 2000,
+          });
+          this.dialogRef.close();
+        },
+        (error: any) => {
+          this.submitStatus = false;
+          let msg = error?.msg || 'ເກີດຂໍ້ຜິດພາດບາງຢ່າງ';
+          this.snackBar.open(msg, '', {
+            verticalPosition: 'top',
+            duration: 3000,
+          });
+          console.log(error);
+        }
+      );
   }
 }

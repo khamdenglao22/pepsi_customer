@@ -37,8 +37,7 @@ export class PackagePageComponent {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router,
-
+    private router: Router
   ) {}
   url = environment.imgUrl;
   packages: any;
@@ -82,7 +81,7 @@ export class PackagePageComponent {
     data: any
   ): void {
     const dialogRef = this.dialog.open(PackagePopUpComponent, {
-      // width: '250px',
+      width: '90%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
@@ -95,7 +94,6 @@ export class PackagePageComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       this.loadDataPoint();
-
     });
   }
 }
