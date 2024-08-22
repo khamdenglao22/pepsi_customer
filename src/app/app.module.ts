@@ -35,6 +35,7 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { PointHistoryComponent } from './profile-user/point-history/point-history.component';
 import { AwardHistoryComponent } from './profile-user/award-history/award-history.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RewardPopupComponent } from './reward/reward-popup/reward-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AwardHistoryComponent,
     RewardComponent,
     LoginLayoutComponent,
+    RewardPopupComponent,
   ],
   imports: [
     BrowserModule,

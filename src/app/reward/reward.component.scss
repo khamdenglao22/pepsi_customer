@@ -28,3 +28,38 @@ text {
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
+
+.reward-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+}
+
+.number-play{
+  display: flex;
+  color: #004c97;
+  background: white;
+  width: fit-content;
+  padding: 5px 20px;
+  border-radius: 20px;
+  border-bottom: 6px solid;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  gap: 3px;
+}
+
+.img-spin{
+  text-align: center;
+  width: fit-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  img{
+    width: 100%;
+  }
+}
+
