@@ -1,3 +1,9 @@
+.reward-popup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .massage{
   color: white;
   display: flex;
@@ -8,6 +14,7 @@
   span{
     font-size: 16px;
   }
+
 }
 .number-play{
   display: flex;
@@ -18,9 +25,18 @@
   border-radius: 20px;
   border-bottom: 6px solid;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+
   cursor: pointer;
 }
 
+.reward-img  {
+  width: 100%;
+}
 
+
+@media only screen and (max-height: 600px){
+  .reward-img{
+      width: 50%;
+
+  }
+}
