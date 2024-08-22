@@ -1,5 +1,5 @@
 <header class="sub-header">
-  <a routerLink="/profile-user" [queryParams]="{store_id: store_id}">
+  <a routerLink="/profile-user" [queryParams]="{ store_id: store_id }">
     <mat-icon> arrow_back</mat-icon>
   </a>
 
@@ -17,8 +17,22 @@
   </div>
 </header>
 <main style="position: relative">
+  <div
+    *ngIf="this.point.length == 0"
+    style="
+      width: 100%;
+      height: 100%;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <p>ຍັງບໍ່ປະຫວັດການແລກຄະແນນ</p>
+  </div>
+
   <div class="container-profile">
-    <div class="container-point" #boxPoint>
+    <div class="container-point" #boxPoint *ngIf="this.point.length > 0">
       <div class="point-box" *ngFor="let item of point">
         <div class="width-box">
           <div class="current-point">
@@ -36,7 +50,7 @@
 
       <!-- <button [disabled]="false">test</button> -->
     </div>
-    <div class="page">
+    <div *ngIf="this.point.length > 0" class="page">
       <button class="next" (click)="next(-1)" [disabled]="prevPage">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>

@@ -1,5 +1,5 @@
 <header class="sub-header">
-  <a routerLink="/profile-user" [queryParams]="{store_id: store_id}">
+  <a routerLink="/profile-user" [queryParams]="{ store_id: store_id }">
     <mat-icon> arrow_back</mat-icon>
   </a>
 
@@ -13,12 +13,25 @@
       font-size: 20px;
     "
   >
-    ປະຫວັດການໄດ້ຄະແນນ
+    ປະຫວັດການໄດ້ຂອງລາງວັນ
   </div>
 </header>
 <main>
+  <div
+    *ngIf="this.prize.length == 0"
+    style="
+      width: 100%;
+      height: 100%;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <p>ຍັງບໍ່ປະຫວັດການແລກລາງວັນ</p>
+  </div>
   <div class="container-profile">
-    <div class="container-point">
+    <div class="container-point" *ngIf="this.prize.length > 0">
       <div class="point-box" *ngFor="let item of prize">
         <div class="current-point">
           <img [src]="url + '/static/' + item.image" alt="" />
@@ -29,7 +42,8 @@
         </div>
       </div>
     </div>
-    <div class="page">
+
+    <div *ngIf="this.prize.length > 0" class="page">
       <button class="next" (click)="next(-1)" [disabled]="prevPage">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
