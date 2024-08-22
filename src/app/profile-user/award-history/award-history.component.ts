@@ -15,7 +15,7 @@ export class AwardHistoryComponent {
     private route: ActivatedRoute
   ) {}
   url = environment.imgUrl;
-  prize: any;
+  prize: any = [];
   pageNumber: any = 1;
   totalProd: any;
   nextPage: Boolean = false;
