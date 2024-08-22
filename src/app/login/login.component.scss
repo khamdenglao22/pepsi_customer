@@ -98,11 +98,23 @@
             font-size: 16px;
           }
 
+          /* Chrome, Safari, Edge, Opera */
+          .from-input::-webkit-outer-spin-button,
+          .from-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+
+          /* Firefox */
+          input[type="number"] {
+            -moz-appearance: textfield;
+          }
+
           button {
             background-color: #004c97;
             border: none;
             padding: 8px 0;
-            border-radius: 5px;
+            border-radius: 20px;
             color: #fff;
             cursor: pointer;
             font-size: 16px;

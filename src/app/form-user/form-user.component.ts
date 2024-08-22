@@ -21,7 +21,7 @@ interface Car {
 })
 export class FormUserComponent {
   village: boolean = false;
-
+  submitStatus: boolean = false;
   lang: any;
 
   dataProvinces: Array<any> = [];
@@ -81,6 +81,37 @@ export class FormUserComponent {
   }
 
   submit() {
+    if (this.fullname == '') {
+      return;
+    }
+
+    if (this.gender == '') {
+      return;
+    }
+
+    if (this.dobDay == '') {
+      return;
+    }
+
+    if (this.dobMon == '') {
+      return;
+    }
+
+    if (this.dobYear == '') {
+      return;
+    }
+
+    if (this.province_id == '') {
+      return;
+    }
+
+    if (this.district_id == '') {
+      return;
+    }
+    if (this.village_id == '' && this.village_name == '') {
+      return;
+    }
+
     const data = {
       fullname: this.fullname,
       gender: this.gender,
@@ -90,15 +121,17 @@ export class FormUserComponent {
       village_id: this.village_id == '' ? null : this.village_id,
       village_name: this.village_name == '' ? null : this.village_name,
     };
-
+    this.submitStatus = true;
     // console.log(data);
     this.service.updateProfile(data).subscribe(
       (res: any) => {
+        this.submitStatus = false;
         if (res.status == 200) {
           this.router.navigate(['/']);
         }
       },
       (error: any) => {
+        this.submitStatus = false;
         console.log(error);
       }
     );

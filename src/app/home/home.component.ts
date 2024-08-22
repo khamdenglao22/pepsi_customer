@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeService } from './home.service';
 import { environment } from 'src/environments/environment.development';
 import { CartService } from '../cart/cart.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent {
   pageNumber: number = 1;
   pageSize: number = 10;
 
-  store_id: number = 0;
+  store_id: any;
+  // store_id_storage: any;
   dataStores: any;
   dataProducts: Array<any> = [];
   dataCart: Array<any> = [];
@@ -23,17 +25,24 @@ export class HomeComponent {
   constructor(
     private snackBar: MatSnackBar,
     private service: HomeService,
-    private cartService: CartService
+    private cartService: CartService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
-    this.service.findStores(this.lang, 1).subscribe((res: any) => {
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+    });
+
+    // console.log(this.store_id_storage);
+
+    this.service.findStores(this.lang, this.store_id).subscribe((res: any) => {
       this.dataStores = res;
       // console.log(this.dataStores.id);
-      localStorage.setItem('store_id', this.dataStores.id);
       // console.log(res.id);
-      this.store_id = res.id;
+      // this.store_id = res.id;
       this.findQtyProduct();
 
       this.service

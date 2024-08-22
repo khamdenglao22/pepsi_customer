@@ -406,9 +406,9 @@ p {
   overflow: visible;
 }
 
-.cdk-overlay-pane {
-  width: auto !important;
-}
+// .cdk-overlay-pane {
+//   width: auto !important;
+// }
 
 .package-btn-submit
   .mat-mdc-progress-spinner
@@ -417,4 +417,15 @@ p {
 }
 .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
   stroke: #fff !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+
+
+    .otp-input {
+      width: 50px !important;
+      height: 50px !important;
+    }
+  }
 }
