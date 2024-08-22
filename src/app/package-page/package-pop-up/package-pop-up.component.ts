@@ -16,6 +16,7 @@ export class details {
   image: any;
   id: any;
   point: any;
+  store_id: any;
 }
 @Component({
   selector: 'app-package-pop-up',
@@ -25,7 +26,7 @@ export class details {
 export class PackagePopUpComponent {
   local_data: any;
   url = environment.imgUrl;
-  store_id: any;
+  // store_id: any;
   submitStatus: boolean = false;
 
   constructor(
@@ -39,16 +40,14 @@ export class PackagePopUpComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.local_data.id);
-    this.store_id = localStorage.getItem('store_id');
-    console.log(this.store_id);
+    // console.log(this.local_data);
   }
 
   exchange() {
     // let store_id = localStorage.getItem('store_id');
     this.submitStatus = true;
     this.service
-      .prizeExchange(this.store_id, this.local_data.id)
+      .prizeExchange(this.local_data.id, this.local_data.store_id)
       .subscribe((res: any) => {
         this.submitStatus = false;
         this.dialogRef.close();

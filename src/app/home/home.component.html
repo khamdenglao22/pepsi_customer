@@ -3,7 +3,7 @@
     <img src="../../assets/images/logo.png">
   </div>
   <h3 class="la-font" *ngIf="dataStores">{{dataStores.name}}</h3>
-  <a class="cart" *ngIf="dataStores" [routerLink]="['/cart', dataStores.id]">
+  <a class="cart" *ngIf="dataStores" [routerLink]="['/cart'] " [queryParams]="{store_id: store_id}">
     <mat-icon>
       shopping_cart</mat-icon>
     <span>{{dataCart.length}}</span>

@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ProfileUserService } from '../profile-user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-point-history',
@@ -9,7 +10,11 @@ import { ProfileUserService } from '../profile-user.service';
 export class PointHistoryComponent {
   // @ViewChild('boxPoint') boxPoint!: ElementRef;
   point: any;
-  constructor(private service: ProfileUserService) {}
+  store_id: any;
+  constructor(
+    private service: ProfileUserService,
+    private route: ActivatedRoute
+  ) {}
   pageNumber: any = 1;
   totalProd: any;
   nextPage: Boolean = false;
@@ -19,6 +24,9 @@ export class PointHistoryComponent {
   heightBox: any;
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+    });
     this.loadData();
   }
 

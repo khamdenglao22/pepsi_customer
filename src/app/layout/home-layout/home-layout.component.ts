@@ -22,16 +22,20 @@ export class HomeLayoutComponent {
       this.store_id = params.get('store_id');
     });
     // }
-    console.log('home layout =' + this.store_id);
+    // console.log('home layout ');
 
     const token = this.authService.getToken();
     if (!token) {
       this.redirectToLogin();
-      return;
+      // return;
     }
   }
 
   private redirectToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'], {
+      queryParams: {
+        store_id: this.store_id,
+      },
+    });
   }
 }

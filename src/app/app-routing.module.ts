@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeLayoutComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -28,7 +28,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'cart/:store_id',
+        path: 'cart',
         component: CartComponent,
       },
       {
