@@ -16,9 +16,9 @@
     ປະຫວັດການໄດ້ຄະແນນ
   </div>
 </header>
-<main>
+<main style="position: relative">
   <div class="container-profile">
-    <div class="container-point">
+    <div class="container-point" #boxPoint>
       <div class="point-box" *ngFor="let item of point">
         <div class="width-box">
           <div class="current-point">
@@ -33,6 +33,23 @@
           </div>
         </div>
       </div>
+
+      <!-- <button [disabled]="false">test</button> -->
+    </div>
+    <div class="page">
+      <button class="next" (click)="next(-1)" [disabled]="prevPage">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+
+      <div class="next-btn">
+        <p>{{ this.pageNumber }}</p>
+        <p>/</p>
+        <p *ngIf="allPages > 0">{{ this.allPages }}</p>
+      </div>
+
+      <button class="next" (click)="next(1)" [disabled]="nextPage">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
     </div>
   </div>
 </main>

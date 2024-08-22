@@ -14,15 +14,15 @@ export class ProfileUserService {
     return this.httpClient.get(`${this.url}/customers/profile`);
   }
 
-  pointHistories() {
+  pointHistories(pageNumber: any, pageSize: any) {
     return this.httpClient.get(
-      `${this.url}/customers/point-histories?pageNumber=1&pageSize=10`
+      `${this.url}/customers/point-histories?pageNumber=${pageNumber}&pageSize=${pageSize}`
     );
   }
 
-  prizeHistories() {
+  prizeHistories(pageNumber: any, pageSize: any) {
     return this.httpClient.get(
-      `${this.url}/customers/prize-histories?pageNumber=1&pageSize=10`
+      `${this.url}/customers/prize-histories?pageNumber=${pageNumber}&pageSize=${pageSize}`
     );
   }
 }
