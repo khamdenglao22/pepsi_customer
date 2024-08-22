@@ -15,6 +15,8 @@ export class LoginComponent {
   unActiveLanguageFlag = '';
   submitStatus: boolean = false;
 
+  onType: string = 'number';
+
   constructor(
     private authService: AuthService,
     private snackBar: MatSnackBar,
@@ -22,8 +24,16 @@ export class LoginComponent {
   ) {}
 
   loginForm = new FormGroup({
-    phone: new FormControl('', Validators.required),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(8),
+    ]),
   });
+
+  get getPhone() {
+    return this.loginForm.get('phone');
+  }
 
   ngOnInit(): void {
     const lang = localStorage.getItem('lang');
@@ -34,6 +44,14 @@ export class LoginComponent {
       this.activeLanguageFlag = 'assets/images/laos-flag.png';
       this.unActiveLanguageFlag = 'assets/images/en-icon.svg';
       localStorage.setItem('lang', 'lo');
+    }
+  }
+
+  onSearchChange(searchValue: any): void {
+    console.log(searchValue.value);
+    this.onType = 'number';
+    if (searchValue.value.length == 8) {
+      this.onType = 'string';
     }
   }
 
@@ -55,6 +73,16 @@ export class LoginComponent {
 
   sendOtp() {
     this.submitStatus = true;
+    // console.log(this.loginForm.controls['phone'].errors);
+    // console.log(
+    //   'minlength = ',
+    //   this.loginForm.controls['phone'].errors?.['minlength']
+    // );
+    // console.log(
+    //   'maxlength = ',
+    //   this.loginForm.controls['phone'].errors?.['maxlength']
+    // );
+    // console.log(this.loginForm.controls['phone'].errors?.['required']);
 
     if (this.loginForm.invalid) {
       this.submitStatus = false;
@@ -63,6 +91,7 @@ export class LoginComponent {
 
     this.authService.sendOtp(this.phone?.value).subscribe(
       (response: any) => {
+        this.onType = 'number';
         this.submitStatus = false;
         if (response.status == 200) {
           this.router.navigate(['/login/otp', this.phone?.value]);
@@ -70,6 +99,7 @@ export class LoginComponent {
         console.log(response);
       },
       (error) => {
+        this.submitStatus = false;
         let msg = error?.msg || 'ເກີດຂໍ້ຜິດພາດບາງຢ່າງ';
         this.snackBar.open(msg, '', {
           verticalPosition: 'top',
