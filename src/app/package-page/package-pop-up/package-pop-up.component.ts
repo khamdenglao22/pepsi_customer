@@ -11,6 +11,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment.development';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class details {
   image: any;
@@ -30,6 +31,7 @@ export class PackagePopUpComponent {
   submitStatus: boolean = false;
 
   constructor(
+    private snackBar: MatSnackBar,
     private service: PackagePageService,
     public dialogRef: MatDialogRef<PackagePopUpComponent>,
     @Optional()
@@ -50,6 +52,10 @@ export class PackagePopUpComponent {
       .prizeExchange(this.local_data.id, this.local_data.store_id)
       .subscribe((res: any) => {
         this.submitStatus = false;
+        this.snackBar.open('ສຳເລັດ', '', {
+          verticalPosition: 'top',
+          duration: 2000,
+        });
         this.dialogRef.close();
       });
   }

@@ -13,6 +13,7 @@ import { PackagePageService } from './package-page.service';
 import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Package {
   value: string;
@@ -36,7 +37,8 @@ export class PackagePageComponent {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+
   ) {}
   url = environment.imgUrl;
   packages: any;
@@ -93,6 +95,7 @@ export class PackagePageComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       this.loadDataPoint();
+
     });
   }
 }
