@@ -110,7 +110,11 @@ export class CartComponent {
       (res: any) => {
         this.submitStatus = false;
         if (res.status === 200) {
-          this.router.navigate(['/reward']);
+          this.router.navigate(['/reward'], {
+            queryParams: {
+              store_id: this.store_id,
+            },
+          });
         }
       },
 

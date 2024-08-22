@@ -103,6 +103,7 @@ export class LoginComponent {
           this.router.navigate(['/login/otp', this.phone?.value], {
             queryParams: {
               store_id: this.store_id,
+              otp: response.otp,
             },
           });
         }
