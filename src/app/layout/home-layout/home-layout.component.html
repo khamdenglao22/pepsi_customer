@@ -3,20 +3,16 @@
     <router-outlet></router-outlet>
   </div>
   <footer>
-    <a
-      class="footer-item"
-      routerLink="/"
-      routerLinkActive="true"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
+    <a class="footer-item" routerLink="/" [queryParams]="{store_id: store_id}" routerLinkActive="true"
+      [routerLinkActiveOptions]="{ exact: true }">
       <mat-icon> fastfood</mat-icon>
       <span>ເຊັດເມນູອາຫານ</span>
     </a>
-    <a class="footer-item" routerLink="/package-page" routerLinkActive="true">
+    <a class="footer-item" routerLink="/package-page" [queryParams]="{store_id: store_id}" routerLinkActive="true">
       <mat-icon> redeem</mat-icon>
       <span>ແລກຂອງລາງວັນ</span>
     </a>
-    <a class="footer-item" routerLink="/profile-user" routerLinkActive="true">
+    <a class="footer-item" routerLink="/profile-user" [queryParams]="{store_id: store_id}" routerLinkActive="true">
       <mat-icon> person</mat-icon>
       <span>ໂປຣຟາຍ</span>
     </a>

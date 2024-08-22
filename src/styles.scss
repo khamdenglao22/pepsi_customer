@@ -420,18 +420,14 @@ p {
   stroke: #fff !important;
 }
 
-
-.mat-mdc-dialog-container .mdc-dialog__surface{
+.mat-mdc-dialog-container .mdc-dialog__surface {
   box-shadow: none !important;
-
+}
 @media only screen and (max-width: 480px) {
   .container {
-
-
     .otp-input {
       width: 50px !important;
       height: 50px !important;
     }
   }
-
 }

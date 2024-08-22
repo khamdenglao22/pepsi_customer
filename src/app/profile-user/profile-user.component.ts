@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProfileUserService } from './profile-user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile-user',
@@ -8,9 +9,16 @@ import { ProfileUserService } from './profile-user.service';
 })
 export class ProfileUserComponent {
   profiles: any;
-  constructor(private service: ProfileUserService) {}
+  store_id: any;
+  constructor(
+    private service: ProfileUserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+    });
     this.loadData();
   }
 

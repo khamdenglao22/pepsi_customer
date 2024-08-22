@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileUserService } from '../profile-user.service';
 import { environment } from 'src/environments/environment.development';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-award-history',
@@ -8,7 +9,11 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./award-history.component.scss'],
 })
 export class AwardHistoryComponent {
-  constructor(private service: ProfileUserService) {}
+  store_id: any;
+  constructor(
+    private service: ProfileUserService,
+    private route: ActivatedRoute
+  ) {}
   url = environment.imgUrl;
   prize: any;
   pageNumber: any = 1;
@@ -20,6 +25,9 @@ export class AwardHistoryComponent {
   heightBox: any;
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+    });
     this.loadData();
   }
 
@@ -27,7 +35,7 @@ export class AwardHistoryComponent {
     this.service
       .prizeHistories(this.pageNumber, this.pageSize)
       .subscribe((res: any) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.prize = res.data;
 
         this.totalProd = res.total;
