@@ -15,6 +15,8 @@ export class OtpLoginComponent {
   btnDisabled: boolean = false;
   store_id: any;
 
+  test_otp: any;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -30,6 +32,7 @@ export class OtpLoginComponent {
 
     this.route.queryParamMap.subscribe((params) => {
       this.store_id = params.get('store_id');
+      this.test_otp = params.get('otp');
     });
   }
 
