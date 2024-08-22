@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PointHistoryComponent {
   // @ViewChild('boxPoint') boxPoint!: ElementRef;
-  point: any;
+  point: any = [];
   store_id: any;
   constructor(
     private service: ProfileUserService,
@@ -45,6 +45,8 @@ export class PointHistoryComponent {
         this.point = res.data;
         this.totalProd = res.total;
         this.allPages = Math.ceil(this.totalProd / this.pageSize);
+
+        console.log(this.point.length);
 
         if (this.pageNumber == this.allPages) {
           this.nextPage = true;
