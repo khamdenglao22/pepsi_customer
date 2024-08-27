@@ -70,6 +70,8 @@ export class RewardComponent implements AfterViewInit {
   current_play_times: any;
   max_play_times: any;
   disabled = '';
+  imgX = 0;
+  imgY = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -100,13 +102,51 @@ export class RewardComponent implements AfterViewInit {
       this.prize = res.data;
       console.log(this.prize.length);
       this.step = 360 / this.prize.length;
+      this.setImgXY();
       this.draw();
     });
+  }
+
+  setImgXY() {
+    switch (this.prize.length) {
+      case 2:
+        this.imgX = -90;
+        this.imgY = 50;
+        break;
+
+      case 3:
+        this.imgX = 30;
+        this.imgY = 60;
+        break;
+
+      case 4:
+        this.imgX = 50;
+        this.imgY = 50;
+        break;
+      case 5:
+      case 6:
+        this.imgX = 100;
+        this.imgY = 50;
+        break;
+      case 7:
+        this.imgX = 100;
+        this.imgY = 40;
+        break;
+      case 8:
+        this.imgX = 100;
+        this.imgY = 30;
+        break;
+      default:
+        break;
+    }
   }
 
   loadGames() {
     this.service.getGames(this.game_id).subscribe((res: any) => {
       this.current_play_times = res.current_play_times;
+
+      console.log(this.current_play_times);
+
       if (this.current_play_times == this.max_play_times) {
         this.disabled = 'disabled';
 
@@ -220,8 +260,8 @@ export class RewardComponent implements AfterViewInit {
             this.ctx.textAlign = 'center';
             this.ctx.drawImage(
               imgPrize,
-              120,
-              50,
+              this.imgX,
+              this.imgY,
               360 / this.prize.length,
               360 / this.prize.length
             );
