@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,12 @@ export class LoginComponent {
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private translateService: TranslateService
+  ) {
+    this.translateService.setDefaultLang('lo');
+    this.translateService.use(localStorage.getItem('lang') || 'lo');
+  }
 
   loginForm = new FormGroup({
     phone: new FormControl('', [

@@ -8,6 +8,11 @@ import {
   HttpClient,
   HttpClientModule,
 } from '@angular/common/http';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +41,11 @@ import { PointHistoryComponent } from './profile-user/point-history/point-histor
 import { AwardHistoryComponent } from './profile-user/award-history/award-history.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RewardPopupComponent } from './reward/reward-popup/reward-popup.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +82,13 @@ import { RewardPopupComponent } from './reward/reward-popup/reward-popup.compone
     MatDialogModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     {
