@@ -11,6 +11,7 @@ import { RewardPopupComponent } from './reward-popup/reward-popup.component';
 import { RewardService } from './reward.service';
 import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-reward',
@@ -252,6 +253,7 @@ export class RewardComponent implements AfterViewInit {
                 this.current_play_times = res.game.current_play_times;
                 this.openDialog('0ms', '0ms', this.prize[i].image);
                 this.loadGames();
+                this.triggerConfetti();
                 console.log(this.prize[i].image);
               });
           }
@@ -304,10 +306,11 @@ export class RewardComponent implements AfterViewInit {
     }, 10);
   }
 
-  // confetti({
-  //   angle: randomInRange(55, 125),
-  //   spread: randomInRange(50, 70),
-  //   particleCount: randomInRange(50, 100),
-  //   origin: { y: 0.6 },
-  // });
+  triggerConfetti() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }
 }
