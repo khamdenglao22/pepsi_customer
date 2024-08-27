@@ -20,6 +20,8 @@ export class CartComponent {
   dataCart: any;
   submitStatus: boolean = false;
 
+  gameId: any;
+
   paymentRef: any;
 
   constructor(
@@ -109,10 +111,14 @@ export class CartComponent {
     this.service.createOrder(formatImg).subscribe(
       (res: any) => {
         this.submitStatus = false;
+
+        console.log(res.game);
+
         if (res.status === 200) {
-          this.router.navigate(['/reward'], {
+          this.router.navigate(['/reward', res.game.game_id], {
             queryParams: {
               store_id: this.store_id,
+              max_play_times: res.game.max_play_times,
             },
           });
         }
