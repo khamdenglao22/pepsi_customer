@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { environment } from 'src/environments/environment.development';
+// import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-cart',
@@ -128,4 +129,12 @@ export class CartComponent {
       }
     );
   }
+
+  // triggerConfetti() {
+  //   confetti({
+  //     particleCount: 100,
+  //     spread: 70,
+  //     origin: { y: 0.6 }
+  //   });
+  // }
 }
