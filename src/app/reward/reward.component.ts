@@ -92,15 +92,15 @@ export class RewardComponent implements AfterViewInit {
 
     this.loadGames();
 
-    console.log(this.current_play_times);
+    // console.log(this.current_play_times);
 
-    console.log(this.randomDegree);
+    // console.log(this.randomDegree);
   }
 
   loadData() {
     this.service.allPrize().subscribe((res: any) => {
       this.prize = res.data;
-      console.log(this.prize.length);
+      // console.log(this.prize.length);
       this.step = 360 / this.prize.length;
       this.setImgXY();
       this.draw();
@@ -145,12 +145,12 @@ export class RewardComponent implements AfterViewInit {
     this.service.getGames(this.game_id).subscribe((res: any) => {
       this.current_play_times = res.current_play_times;
 
-      console.log(this.current_play_times);
+      // console.log(this.current_play_times);
 
       if (this.current_play_times == this.max_play_times) {
         this.disabled = 'disabled';
 
-        console.log('test');
+        // console.log('test');
       }
     });
   }
@@ -166,7 +166,7 @@ export class RewardComponent implements AfterViewInit {
     this.radius = this.width / 2;
     canvas.style.transform = `rotate(${this.num}deg)`;
 
-    console.log(this.ctx);
+    // console.log(this.ctx);
 
     // this.draw();
     // this.spin();
@@ -289,12 +289,12 @@ export class RewardComponent implements AfterViewInit {
                 store_id: this.store_id,
               })
               .subscribe((res: any) => {
-                console.log(res);
+                // console.log(res);
                 this.current_play_times = res.game.current_play_times;
                 this.openDialog('0ms', '0ms', this.prize[i].image);
                 this.loadGames();
                 this.triggerConfetti();
-                console.log(this.prize[i].image);
+                // console.log(this.prize[i].image);
               });
           }
         }
