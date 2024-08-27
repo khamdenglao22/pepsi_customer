@@ -10,6 +10,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { RewardPopupComponent } from './reward-popup/reward-popup.component';
 import { RewardService } from './reward.service';
 import { environment } from 'src/environments/environment.development';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-reward',
@@ -19,6 +20,8 @@ import { environment } from 'src/environments/environment.development';
 export class RewardComponent implements AfterViewInit {
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
+
+  @ViewChild('win') win!: ElementRef;
 
   url = environment.imgUrl;
   prize: any = [];
@@ -59,11 +62,36 @@ export class RewardComponent implements AfterViewInit {
   step: any;
   width: any;
   height: any;
+  start: any;
+  end: any;
+  game_id: any;
+  store_id: any;
+  current_play_times: any;
+  max_play_times: any;
+  disabled = '';
 
-  constructor(public dialog: MatDialog, private service: RewardService) {}
+  constructor(
+    public dialog: MatDialog,
+    private service: RewardService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // this.loadData();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.game_id = Number(params.get('id'));
+    });
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.store_id = params.get('store_id');
+      this.max_play_times = params.get('max_play_times');
+    });
+
+    this.loadGames();
+
+    console.log(this.current_play_times);
+
+    console.log(this.randomDegree);
   }
 
   loadData() {
@@ -72,6 +100,17 @@ export class RewardComponent implements AfterViewInit {
       console.log(this.prize.length);
       this.step = 360 / this.prize.length;
       this.draw();
+    });
+  }
+
+  loadGames() {
+    this.service.getGames(this.game_id).subscribe((res: any) => {
+      this.current_play_times = res.current_play_times;
+      if (this.current_play_times == this.max_play_times) {
+        this.disabled = 'disabled';
+
+        console.log('test');
+      }
     });
   }
 
@@ -84,17 +123,19 @@ export class RewardComponent implements AfterViewInit {
     this.centerX = this.width / 2;
     this.centerY = this.height / 2;
     this.radius = this.width / 2;
+    canvas.style.transform = `rotate(${this.num}deg)`;
 
     console.log(this.ctx);
 
-    this.draw();
+    // this.draw();
+    // this.spin();
   }
 
   toRad(deg: any) {
     return deg * (Math.PI / 180.0);
   }
 
-  draw() {
+  draw(spinActive: boolean = false) {
     if (this.ctx) {
       // // Draw a rectangle
       // this.ctx.fillStyle = 'blue';
@@ -125,7 +166,8 @@ export class RewardComponent implements AfterViewInit {
           let endDeg = startDeg + this.step;
           const imgPrize = new Image();
           const imgPrize2 = new Image();
-
+          this.start = startDeg;
+          this.end = endDeg;
           // color = colors[i];
           let colorStyle = `rgb(255,255,255)`;
 
@@ -138,7 +180,7 @@ export class RewardComponent implements AfterViewInit {
             this.toRad(startDeg),
             this.toRad(endDeg)
           );
-          let colorStyle2 = `rgb(0,0,0)`;
+          let colorStyle2 = `black`;
           this.ctx.fillStyle = colorStyle2;
           this.ctx.lineTo(this.centerX, this.centerY);
           this.ctx.fill();
@@ -148,7 +190,7 @@ export class RewardComponent implements AfterViewInit {
           this.ctx.arc(
             this.centerX,
             this.centerY,
-            this.radius - 30,
+            this.radius - 10,
             this.toRad(startDeg),
             this.toRad(endDeg)
           );
@@ -157,51 +199,61 @@ export class RewardComponent implements AfterViewInit {
           this.ctx.fill();
 
           // draw text
-          this.ctx.save();
-          this.ctx.translate(this.centerX, this.centerY);
+          // this.ctx.save();
+          // this.ctx.translate(this.centerX, this.centerY);
+          // this.ctx.rotate(this.toRad((startDeg + endDeg) / 2));
+          // this.ctx.textAlign = 'center';
+          // this.ctx.fillStyle = '#000';
+          // this.ctx.font = 'bold 24px serif';
+          // this.ctx.fillText(this.prize[i].image, 130, 10);
+          // this.ctx.restore();
 
-          this.ctx.rotate(this.toRad((startDeg + endDeg) / 2));
-          this.ctx.textAlign = 'center';
-          // if (color.r > 150 || color.g > 150 || color.b > 150) {
-          //   this.ctx.fillStyle = '#000';
-          // } else {
-          //   this.ctx.fillStyle = '#fff';
-          // }
-          this.ctx.fillStyle = '#000';
-          this.ctx.font = 'bold 24px serif';
-          // console.log(this.prize[i]);
+          // draw img
+
           imgPrize.src = `${this.url}/static/${this.prize[i].image}`;
-          imgPrize2.src = `${this.url}/static/${this.prize[1].image}`;
-          // console.log(imgPrize);
 
-          // console.log(360 / this.prize[i].length);
+          imgPrize.onload = () => {
+            this.ctx.save();
+            this.ctx.translate(this.centerX, this.centerY);
+            this.ctx.rotate(this.toRad(endDeg - 360 / this.prize.length));
+            this.ctx.textAlign = 'center';
+            this.ctx.drawImage(
+              imgPrize,
+              120,
+              50,
+              360 / this.prize.length,
+              360 / this.prize.length
+            );
+            this.ctx.restore();
+          };
 
-          console.log(i);
+          // console.log(this.prize[i].image);
 
-          let prizeX = i * 50;
-          // let prizeY = 360 / i;
-
-          this.ctx.beginPath();
-          // imgPrize.onload = () => {
-          //   this.ctx.drawImage(imgPrize, 50, 150, 90, 90);
-          //   this.ctx.arc(50, 190, 100, 50, 2 * Math.PI);
-          // };
-          // imgPrize2.onload = () => {
-          //   this.ctx.drawImage(imgPrize2, 100, 100, 90, 90);
-          //   // this.ctx.moveTo(80, 80);
-          // };
-          // this.ctx.fillText(this.prize[i].color, 130, 10);
           // this.ctx.drawImage(imgPrize, 130, 10);
-          this.ctx.restore();
 
           this.itemDegs[this.prize[i]] = {
             startDeg: startDeg,
             endDeg: endDeg,
           };
-
-          if (this.randomDegree >= startDeg && this.randomDegree <= endDeg) {
-            // document.getElementById('winner').innerHTML = items[i];
-            console.log('test winner');
+          // this.prizeImg = this.prize[i].image;
+          if (
+            this.randomDegree >= startDeg &&
+            this.randomDegree <= endDeg &&
+            spinActive == true
+          ) {
+            this.service
+              .updateGame({
+                game_id: this.game_id,
+                prize_id: this.prize[i].id,
+                store_id: this.store_id,
+              })
+              .subscribe((res: any) => {
+                console.log(res);
+                this.current_play_times = res.game.current_play_times;
+                this.openDialog('0ms', '0ms', this.prize[i].image);
+                this.loadGames();
+                console.log(this.prize[i].image);
+              });
           }
         }
       }
@@ -210,11 +262,14 @@ export class RewardComponent implements AfterViewInit {
 
   openDialog(
     enterAnimationDuration: string,
-    exitAnimationDuration: string
+    exitAnimationDuration: string,
+    data: any
   ): void {
     const dialogRef = this.dialog.open(RewardPopupComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
+      data: { img: data },
+      width: '300px',
     });
   }
 
@@ -222,7 +277,32 @@ export class RewardComponent implements AfterViewInit {
     return Math.random() * (max - min) + min;
   }
 
-  // spin() {}
+  spin() {
+    let myInterval = setInterval(() => {
+      this.num += this.randomDegree;
+      // console.log(this.num);
+
+      if (this.num >= 360) {
+        this.count += 1;
+        this.resultValue -= 5;
+        this.num = 0;
+      } else if (this.count > 15 && this.num == this.randomDegree) {
+        // this.randomDegree = 0;
+
+        clearInterval(myInterval);
+        this.count = 0;
+        this.resultValue = 101;
+        this.randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+        // spinBtn.disabled = false;
+        // canvas.style.transform = `rotate(-${this.randomDegree}deg)`;
+        this.num = -this.randomDegree;
+        this.draw(true);
+      }
+      this.canvas.nativeElement.style.transform = `rotate(${this.num}deg)`;
+
+      // console.log(this.num);
+    }, 10);
+  }
 
   // confetti({
   //   angle: randomInRange(55, 125),

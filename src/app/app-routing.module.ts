@@ -49,9 +49,10 @@ const routes: Routes = [
       },
 
       {
-        path: 'reward',
+        path: 'reward/:id',
         component: RewardComponent,
       },
+
       {
         path: 'package-page',
         component: PackagePageComponent,
