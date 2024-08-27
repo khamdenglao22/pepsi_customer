@@ -12,7 +12,6 @@ import {
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,7 +42,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RewardPopupComponent } from './reward/reward-popup/reward-popup.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  // return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, '/pepsi_frontend/assets/i18n/', '.json');
 }
 
 @NgModule({

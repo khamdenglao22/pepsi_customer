@@ -35,7 +35,7 @@
 
   </ul>
   <button class="btn-upload" *ngIf="!imagePreview"
-    (click)="triggerFileInput()">ຄິກເພື່ອອັບໂຫລດຫຼັກຖານການຊຳລະເງິນ</button>
+    (click)="triggerFileInput($event)">ຄິກເພື່ອອັບໂຫລດຫຼັກຖານການຊຳລະເງິນ</button>
   <input type="file" #fileInput *ngIf="!imagePreview" (change)="onFileSelected($event)" hidden>
   <div class="view-image" *ngIf="imagePreview">
     <img [src]="imagePreview">

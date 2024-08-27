@@ -4,7 +4,6 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { environment } from 'src/environments/environment.development';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -53,7 +52,8 @@ export class CartComponent {
     return Number(data).toLocaleString();
   }
 
-  triggerFileInput(): void {
+  triggerFileInput(event: any): void {
+    event.preventDefault();
     this.fileInput.nativeElement.click();
   }
 
@@ -113,7 +113,7 @@ export class CartComponent {
       (res: any) => {
         this.submitStatus = false;
 
-        console.log(res.game);
+        // console.log(res.game);
 
         if (res.status === 200) {
           this.router.navigate(['/reward', res.game.game_id], {
@@ -126,8 +126,8 @@ export class CartComponent {
       },
 
       (err: any) => {
-        console.log(err);
-
+        // console.log(err);
+        this.submitStatus = false;
         this.snackBar.open(err.msg, '', {
           verticalPosition: 'top',
           duration: 2000,
@@ -135,6 +135,4 @@ export class CartComponent {
       }
     );
   }
-
-  
 }

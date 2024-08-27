@@ -46,7 +46,7 @@ export class PointHistoryComponent {
         this.totalProd = res.total;
         this.allPages = Math.ceil(this.totalProd / this.pageSize);
 
-        console.log(this.point.length);
+        // console.log(this.point.length);
 
         if (this.pageNumber == this.allPages) {
           this.nextPage = true;
