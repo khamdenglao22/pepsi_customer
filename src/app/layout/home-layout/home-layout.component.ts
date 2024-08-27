@@ -12,7 +12,8 @@ export class HomeLayoutComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    
   ) {}
   ngOnInit(): void {
     // const store_id_storage = localStorage.getItem('store_id');
