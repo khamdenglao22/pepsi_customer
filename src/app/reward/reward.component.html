@@ -4,9 +4,9 @@
 
 <main class="reward-page">
   <div class="number-play">
-    <p>2</p>
+    <p>{{ this.current_play_times }}</p>
     <p>/</p>
-    <p>3</p>
+    <p>{{ this.max_play_times }}</p>
   </div>
 
   <!-- <div class="img-spin" (click)="openDialog('0ms', '0ms')">
@@ -14,9 +14,17 @@
   </div> -->
 
   <div class="conatiner">
+    <h1 class="win" #win></h1>
+
     <div class="wheel">
       <canvas class="" id="canvas" width="500" height="500" #canvas></canvas>
-      <div class="center-circle" onclick="spin()">
+      <div
+        class="center-circle {{ this.disabled }}"
+        (click)="this.disabled == 'disabled' ? '' : spin()"
+        style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px"
+      >
+        <div class="clickSpin">ກົດ</div>
+
         <div class="triangle"></div>
       </div>
     </div>

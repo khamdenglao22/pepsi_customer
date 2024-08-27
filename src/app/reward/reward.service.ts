@@ -13,4 +13,12 @@ export class RewardService {
   allPrize() {
     return this.httpClient.get(`${this.url}/games/prize`);
   }
+
+  updateGame(data: any) {
+    return this.httpClient.post(`${this.url}/games/prize`, data);
+  }
+
+  getGames(gameId: any) {
+    return this.httpClient.get(`${this.url}/games/${gameId}`);
+  }
 }
